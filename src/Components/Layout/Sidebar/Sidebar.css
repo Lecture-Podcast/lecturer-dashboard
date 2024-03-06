@@ -1,0 +1,53 @@
+.sidebar{
+    position: fixed;
+    width: 314px;
+    height: 100vh;
+    background-color: #01003A;
+    padding: 2rem 1.875rem;
+}
+.sidebar-logo{
+    margin-bottom: 75px;
+}
+.sidebar-nav nav{
+    list-style: none;
+}
+.sidebar-nav nav ul{
+    list-style: none;
+}
+.sidebar-nav nav ul li{
+    cursor: pointer;
+    margin-bottom: 15px;
+    font-family: "Inter";
+    font-weight:"500";
+    color: #E6E6E6;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5.88px;
+}
+.active{
+    background-color: #FFA500;
+    border-radius: 8px;
+}
+.log-out{
+    width: 80%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 1rem;
+    padding-top: 40px;
+    border-top: 1px solid #98A2B3;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.log-out span{
+    color: #FFFFFF;
+}
+.log-out p{
+    color: #E6E6E6;
+    font-family: "Inter";
+    font-weight:"500";
+    color: #E6E6E6;
+    font-size: 1rem;
+}

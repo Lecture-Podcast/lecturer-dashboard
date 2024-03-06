@@ -1,0 +1,14 @@
+.layout{
+    display: flex;
+}
+/* .layout-left{
+    width: 314px;
+} */
+.layout-right{
+    width: calc(100% - 314px);
+    margin-left: 314px;
+}
+.layout-body{
+    margin-top: 85px;
+    padding: 1.875rem;
+}

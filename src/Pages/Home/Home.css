@@ -1,0 +1,102 @@
+.page-title{
+    font-family: "Inter";
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #000000;
+}
+.page-body{
+    margin-top: 6px;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 1rem;
+    color: #475367;
+}
+.home-body-top{
+    display: flex;
+    justify-content: space-between;
+    gap: 23px;
+}
+.home-chart{
+    width: 65%;
+}
+.home-cards{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.home-calendar{
+    width: 35%;
+    padding:1.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #E4E7EC;
+}
+.i{
+    width: 100%;
+}
+.home-body{
+    margin-top: 20px;
+}
+.chart-head{
+    font-family: "Inter";
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #000000;
+}
+.chart-body{
+    margin-top: 8px;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 14px;
+    color: #475367;
+}
+.chart-container{
+    margin-top: 20px;
+    padding:1.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #E4E7EC;
+}
+.graph-con{
+    margin-top: 16px;
+}
+.calendar{
+    margin-top: 30px;
+}
+.schedule-card{
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    width: 100%;
+    padding: 0.8125rem 0.875rem;
+    border: 1px solid #D5D5D5;
+    border-radius: 8px;
+}
+.schedule-image{
+    width: 33.39px;
+    height: 33.39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #5627FF;
+}
+.schedule-image P{
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+.schedule-details h4{
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    color: #323232;
+}
+
+.schedule-details p{
+    margin-top: 5px;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    color: #98A2B3;
+}

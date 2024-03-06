@@ -1,0 +1,98 @@
+.navbar{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 177px;
+    padding: 20px 37.5px 8px 37.5px;
+}
+
+.navbar-search{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.10rem;
+    border: 1px solid #FAE6C3;
+    border-radius: 6px;
+    gap: 15px;
+}
+.navbar-search svg{
+    color: #667185;
+}
+.navbar-search input{
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+.navbar-search input:focus{
+    outline: none;
+}
+.navbar-profile{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.notification-bell{
+    height: 48px;
+    width: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF8ED;
+    border: 8px;
+}
+.notification-bell svg{
+    color: #FFA500;
+}
+.profile-details{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.dp{
+    position: relative;
+}
+.tick{
+    position: absolute;
+    bottom: 5px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #1671D9;
+}
+.tick svg{
+    color: white;
+    font-size: 0.5rem;
+}
+.dp img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.profile-name h4{
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    color: #01003A;
+}
+.profile-name p{
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    color: #7E7E9B;
+}
+.profile-more{
+    margin-left: 35px;
+    cursor: pointer;
+}
+.profile-more svg{
+    color: #FFA500;
+}

@@ -1,0 +1,159 @@
+.settings-navigation{
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+.setting-nav p{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins";
+    color: #ABABAB;
+}
+.active-nav{
+    padding: 0.625rem 1rem;
+    background-color: #FFF9E2; 
+    border-radius: 8px;
+}
+.active-nav p{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Poppins";
+    color: #FFA500;
+}
+.settings-body-inner{
+    margin-top: 40px;
+    display: flex;
+    gap: 41px;  
+}
+.setting-body-inner-2{
+    margin-top: 25px;
+}
+.personal-information{
+    width:65%;
+}
+.professional-information{
+    width:63%;
+}
+.personal-information{
+    border: 1px solid #E4E7EC;
+    border-radius: 12px;
+    padding: 1.9375rem 1.8125rem;
+}
+.complete-profile{
+    width: 35%;
+}
+.profile-image img{
+    width: 188px;
+    height: 188px;
+    border-radius: 50%;
+}
+.profile-image {
+    margin-top: 31px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.upload-image button{
+    background-color: transparent;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter";
+    color: #52525B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid #F3A218;
+}
+.upload-image p{
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter";
+    color: #667185;
+}
+.personal-form{
+    margin-top: 63px;
+}
+form{
+    width: 100%;
+}
+.form-1{
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+.form-2{
+    margin-top: 16px;
+}
+.submit-button{
+    margin-top: 39px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+.submit-button button{
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter";
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #F3A218;
+}
+.circular-progressbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.circle-background{
+    fill: none;
+    stroke: #F0F2F5;
+}
+.circle-progress{
+    fill: none;
+    stroke: #FFA500;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.circular-text{
+    font-size: 24px;
+    font-family: "Inter";
+    font-weight: 600;
+    color: #000000;
+}
+.profile-tasks{
+    margin-top: 58px;
+}
+.task{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+}
+.task p{
+    font-size: 14px;
+    font-family: "Inter";
+    font-weight: 500;
+}
+.task-status{
+    border: 2px solid #FFA500;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+}
+.task-status svg{
+    font-size: 0.5rem;
+    color: #FFA500;
+}
+.task-uncomplete-status{
+    border: 2px solid #98A2B3;
+}
+.task-uncomplete-status svg, .task-uncomplete p{
+    color: #98A2B3;
+}

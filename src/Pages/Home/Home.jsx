@@ -1,6 +1,11 @@
 import React from 'react'
 import "./Home.css"
 import Card from '../../Components/Card/Card';
+import { FiCalendar } from "react-icons/fi";
+import { HiOutlineChevronRight } from "react-icons/hi";
+import { BsChatText } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
+import messages from '../../Assets/images/state-pro.png'
 import BasicDateCalendar from '../../Components/Calendar/Calendar';
 import Graph from '../../Components/Chart/Chart';
 
@@ -47,7 +52,114 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                
+                <div className="home-body-bottom">
+                    <div className="quick-action">
+                        <div className="quick-head">
+                            <p className='quick-head-text'>Quick Actions</p>
+                        </div>
+                        <div className="quick-action-con">
+                            <div className="action">
+                                <div className="action-left">
+                                    <div className="action-icon">
+                                        <FiCalendar/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Create Live Class</h3>
+                                        <p>Schedule a live class session</p>
+                                    </div>
+                                </div>
+                                <div className="action-right">
+                                    <HiOutlineChevronRight/>
+                                </div>
+                            </div>
+                            <div className="action">
+                                <div className="action-left">
+                                    <div className="action-icon">
+                                        <BsChatText/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Create Group Chat</h3>
+                                        <p>A platform to connect with students</p>
+                                    </div>
+                                </div>
+                                <div className="action-right">
+                                    <HiOutlineChevronRight/>
+                                </div>
+                            </div>
+                            <div className="action">
+                                <div className="action-left">
+                                    <div className="action-icon">
+                                        <IoLocationOutline/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Upload Lecture Documents</h3>
+                                        <p>Schedule a live class sessionDisplay your lecture note for student access</p>
+                                    </div>
+                                </div>
+                                <div className="action-right">
+                                    <HiOutlineChevronRight/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="recent-message">
+                        <div className="quick-head">
+                            <p className='quick-head-text'>Recent Messages</p>
+                            <div className="see-all">
+                                <p>See All</p>
+                                <HiOutlineChevronRight/>
+                            </div>
+                        </div>
+                        <div className="messages">
+                            <div className="messages-left">
+                                    <div className="message-con">
+                                        <img src={messages}/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Dr. Alison Ogaga</h3>
+                                        <p>Message Preview</p>
+                                    </div>
+                                </div>
+                                <div className="messages-right">
+                                    <button>
+                                        View Message
+                                    </button>
+                                </div>
+                        </div>
+                        <div className="messages">
+                            <div className="messages-left">
+                                    <div className="message-con">
+                                        <img src={messages}/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Dr. Alison Ogaga</h3>
+                                        <p>Message Preview</p>
+                                    </div>
+                                </div>
+                                <div className="messages-right">
+                                    <button>
+                                        View Message
+                                    </button>
+                                </div>
+                        </div>
+                        <div className="messages">
+                            <div className="messages-left">
+                                    <div className="message-con">
+                                        <img src={messages}/>
+                                    </div>
+                                    <div className="action-text">
+                                        <h3>Dr. Alison Ogaga</h3>
+                                        <p>Message Preview</p>
+                                    </div>
+                                </div>
+                                <div className="messages-right">
+                                    <button>
+                                        View Message
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

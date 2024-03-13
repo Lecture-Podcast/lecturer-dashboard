@@ -100,3 +100,119 @@
     font-weight: 500;
     color: #98A2B3;
 }
+.home-body-bottom{
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+}
+.quick-action, .recent-message{
+    border: 1px solid #E4E7EC;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+}
+.quick-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E4E7EC;
+}
+.see-all{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.see-all p{
+    color: #FFA500;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Inter";
+}
+.see-all svg{
+    color: #FFA500;
+    font-size: 16px;
+}
+.quick-head-text{
+    color: #101928;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Inter";
+    padding-bottom: 1rem;
+}
+.quick-action{
+    width: 40%;
+}
+.recent-message{
+    width: 60%;
+}
+.action{
+    padding: 1.1rem 0rem;
+    border-bottom: 1px solid #E4E7EC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.action-left{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+.action-icon{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF8ED;
+}
+.action-icon svg{
+    color: #FFA500;
+    font-size: 1.1rem;
+}
+.action-text h3{
+    color: #101928;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Inter";
+}
+.action-text p{
+    width: 100%;
+    margin-top: 4px;
+
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter";
+}
+.action-right svg{
+    color: #FFA500;
+    font-size: 1.1rem;
+}
+.messages{
+    padding: 1.1rem 0rem;
+    border-bottom: 1px solid #E4E7EC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.messages-left{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.message-con img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.messages-right button{
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    color: #101928;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter";
+    border: 1px solid #F3A218;
+    border-radius: 8px;
+}

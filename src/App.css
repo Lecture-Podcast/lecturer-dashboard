@@ -6,6 +6,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+}
 .css-1q04gal-MuiDateCalendar-root{
   width: 100% !important;
 }

@@ -9,6 +9,7 @@ import { FiSettings } from "react-icons/fi";
 import { TbBriefcase } from "react-icons/tb";
 import { PiSignOutLight } from "react-icons/pi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
+import { Link } from 'react-router-dom';
 // import { useState } from 'react';
 const Sidebar = () => {
     const [value, setValue] = React.useState(0);
@@ -23,26 +24,32 @@ const Sidebar = () => {
             <div className="sidebar-nav">
                 <nav>
                     <ul>
-                        <li className={(value===0)?'active':''} onClick={()=>{handleChange(0)}}>
-                            <span><HiOutlineChartPie/></span>
-                            Dashboard
-                        </li>
+                        <Link to='/'>
+                            <li className={(value===0)?'active':''} onClick={()=>{handleChange(0)}}>
+                                <span><HiOutlineChartPie/></span>
+                                Dashboard
+                            </li>
+                        </Link>
                         <li className={(value===1)?'active':''} onClick={()=>{handleChange(1)}}>
                             <span><FiFolder/></span>
                             Content Library
                         </li>
-                        <li className={(value===2)?'active':''} onClick={()=>{handleChange(2)}}>
-                            <span><RiAddCircleLine/></span>
-                            Create
-                        </li>
+                        <Link to="/create">
+                            <li className={(value===2)?'active':''} onClick={()=>{handleChange(2)}}>
+                                <span><RiAddCircleLine/></span>
+                                Create
+                            </li>
+                        </Link>
                         <li className={(value===3)?'active':''} onClick={()=>{handleChange(3)}}>
                             <span><TbMessage/></span>
                             Messages
                         </li>
-                        <li className={(value===4)?'active':''} onClick={()=>{handleChange(4)}}>
-                            <span><FiSettings/></span>
-                            Settings
-                        </li>
+                        <Link to="/settings">
+                            <li className={(value===4)?'active':''} onClick={()=>{handleChange(4)}}>
+                                <span><FiSettings/></span>
+                                Settings
+                            </li>
+                        </Link>
                         <li className={(value===5)?'active':''} onClick={()=>{handleChange(5)}}>
                             <span><TbBriefcase/></span>
                             Supports & Help

@@ -2,6 +2,9 @@ import React from 'react'
 import { useRoutes } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Pages/Home/Home";
+import Settings from './Pages/Settings/Settings';
+import Create from './Pages/Create/Create';
+import Uplaod from './Pages/Create/upload';
 
 
 export default function Router() {
@@ -20,7 +23,9 @@ export default function Router() {
             element: <Layout/>,
             children: [
               { index: true, element: <Home/> },
-              // { path: 'settings', element: <Settings/> },
+              { path: 'settings', element: <Settings/> },
+              { path: 'create', element: <Create/> },
+              { path: '/create/upload', element: <Uplaod/> },
             ],
         },
     ]);

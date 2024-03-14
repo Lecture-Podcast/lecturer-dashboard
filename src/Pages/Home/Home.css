@@ -14,26 +14,28 @@
 .home-body-top{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 23px;
+    flex-wrap: wrap;
 }
 .home-chart{
-    width: 65%;
+    width: 100%;
 }
 .home-cards{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 20px;
 }
 .home-calendar{
-    width: 35%;
+    width: 100%;
     padding:1.5rem 1rem;
     border-radius: 12px;
     border: 1px solid #E4E7EC;
 }
-.i{
-    width: 100%;
-}
+
 .home-body{
     margin-top: 20px;
 }
@@ -216,3 +218,17 @@
     border: 1px solid #F3A218;
     border-radius: 8px;
 }
+
+
+@media only screen and (max-width: 767px) { 
+    .home-body-bottom{
+        flex-direction: column;
+    }
+
+    .quick-action{
+        width: 100%;
+    }
+    .recent-message{
+        width: 100%;
+    }
+  }

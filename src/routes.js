@@ -25,9 +25,9 @@ export default function Router() {
         { index: true, element: <Home /> },
         { path: "settings", element: <Settings /> },
         { path: "create", element: <Create /> },
-        { path: "/create/upload", element: <Uplaod /> },
-        { path: "/create-content", element: <Content /> },
-        { path: "/create-library", element: <ContentLibrary /> },
+        { path: "create/upload", element: <Uplaod /> },
+        { path: "create-content", element: <Content /> },
+        { path: "create-library", element: <ContentLibrary /> },
       ],
     },
   ]);

@@ -2,6 +2,7 @@ import React from "react";
 
 import Empty from "../../Assets/images/Empty.svg";
 import "./content.css";
+import { Link } from "react-router-dom";
 
 const Content = () => {
   return (
@@ -22,7 +23,7 @@ const Content = () => {
             You have not added any content. Click the <br /> button below to
             create one.
           </p>
-          <button className="content-button">Create content</button>
+          <Link to='/create-library'><button className="content-button">Create content</button></Link>
         </div>
       </div>
     </section>

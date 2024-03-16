@@ -37,17 +37,19 @@ const Sidebar = () => {
                 Dashboard
               </li>
             </Link>
-            <li
-              className={value === 1 ? "active" : ""}
-              onClick={() => {
-                handleChange(1);
-              }}
-            >
-              <span>
-                <FiFolder />
-              </span>
-              Content Library
-            </li>
+            <Link to='/create-content'>
+              <li 
+                className={value === 1 ? "active" : ""}
+                onClick={() => {
+                  handleChange(1);
+                }}
+              >
+                <span>
+                  <FiFolder />
+                </span>
+                Content Library
+              </li>
+            </Link>
             <Link to="/create">
               <li
                 className={value === 2 ? "active" : ""}

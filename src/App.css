@@ -9,6 +9,10 @@
 a{
   text-decoration: none;
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .css-1q04gal-MuiDateCalendar-root{
   width: 100% !important;
 }

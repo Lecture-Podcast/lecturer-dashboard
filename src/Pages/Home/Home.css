@@ -16,21 +16,20 @@
     justify-content: space-between;
     align-items: center;
     gap: 23px;
-    flex-wrap: wrap;
 }
 .home-chart{
-    width: 100%;
+    width: 70%;
 }
 .home-cards{
     width: 100%;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
+    overflow-x: scroll;
     gap: 20px;
 }
 .home-calendar{
-    width: 100%;
+    width: 30%;
     padding:1.5rem 1rem;
     border-radius: 12px;
     border: 1px solid #E4E7EC;

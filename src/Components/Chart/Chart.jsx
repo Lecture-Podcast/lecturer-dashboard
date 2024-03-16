@@ -69,12 +69,12 @@ const Graph = () => {
     const data = {
         series: [
           {
-            name: "High - 2013",
-            data: [28, 29, 33, 36, 32, 32, 33],
+            name: "Documents",
+            data: [200, 300, 400, 350, 500, 600, 550, 400, 500, 700, 750, 850],
           },
           {
-            name: "Low - 2013",
-            data: [12, 11, 14, 18, 17, 13, 13],
+            name: "Videos/Live sessoins",
+            data: [250, 200, 300, 450, 200, 500, 550, 450, 550, 400, 750, 850],
           },
         ],
         options: {
@@ -93,39 +93,43 @@ const Graph = () => {
               show: false,
             },
           },
-          colors: ["#77B6EA", "#545454"],
-          dataLabels: {
-            enabled: true,
-          },
+          colors: ["#F56630", "#1671D9"],
           stroke: {
             curve: "smooth",
           },
-          title: {
-            text: "Average High & Low Temperature",
-            align: "left",
-          },
           grid: {
             borderColor: "#e7e7e7",
+            strokeDashArray: 7,
             row: {
-              colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
               opacity: 0.5,
             },
           },
-          markers: {
-            size: 1,
-          },
+          // markers: {
+          //   size: 1,
+          // },
           xaxis: {
-            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-            title: {
-              text: "Month",
+            categories:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', "12"],
+            labels: {
+              style: {
+                fontFamily: "Inter", // Change the font family as needed
+                fontSize: "12",
+                color:"#475367",
+                fontWeight: "400"
+              },
             },
           },
           yaxis: {
-            title: {
-              text: "Temperature",
+            tickAmount: 5,
+            min: 0,
+            max: 1000,
+            labels: {
+              style: {
+                fontFamily: "Inter", // Change the font family as needed
+                fontSize: "12",
+                color:"#475367",
+                fontWeight: "400"
+              },
             },
-            min: 5,
-            max: 40,
           },
           legend: {
             position: "top",

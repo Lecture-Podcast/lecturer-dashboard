@@ -1,0 +1,14 @@
+// FOR Audio Content
+export const AUDIO_REQUEST = "AUDIO_REQUEST"
+export const AUDIO_SUCCESS = "AUDIO_SUCCESS"
+export const AUDIO_FALIURE = "AUDIO_FALIURE"
+
+// FOR FILE Content
+export const FILE_REQUEST = "FILE_REQUEST"
+export const FILE_SUCCESS = "FILE_SUCCESS"
+export const FILE_FALIURE = "FILE_FALIURE"
+
+// FOR VIDEO Content
+export const VIDEO_REQUEST = "VIDEO_REQUEST"
+export const VIDEO_SUCCESS = "VIDEO_SUCCESS"
+export const VIDEO_FALIURE = "VIDEO_FALIURE"

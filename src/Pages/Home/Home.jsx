@@ -8,6 +8,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import messages from '../../Assets/images/state-pro.png'
 import BasicDateCalendar from '../../Components/Calendar/Calendar';
 import Graph from '../../Components/Chart/Chart';
+import { fetchprofile } from '../../Redux/Profile/ProfileAction';
+import { connect } from 'react-redux';
 
 const Home = () => {
     return ( 
@@ -164,5 +166,19 @@ const Home = () => {
         </div>
     );
 }
+const mapStoreToProps = (state) => {
+    console.log(state)
+    return {
+        loading: state.profile.loading,
+        error: state.profile.error,
+        profile: state.profile.data,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchprofile: () => dispatch(fetchprofile()),
+    };
+};
  
-export default Home;
+export default connect(mapStoreToProps, mapDispatchToProps)(Home);

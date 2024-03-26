@@ -37,7 +37,7 @@ const Sidebar = () => {
                 Dashboard
               </li>
             </Link>
-            <Link to='/create-content'>
+            <Link to='/create-library'>
               <li 
                 className={value === 1 ? "active" : ""}
                 onClick={() => {

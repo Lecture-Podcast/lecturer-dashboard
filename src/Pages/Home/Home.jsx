@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Home.css"
 import Card from '../../Components/Card/Card';
 import { FiCalendar } from "react-icons/fi";
@@ -12,10 +12,24 @@ import { fetchprofile } from '../../Redux/Profile/ProfileAction';
 import { connect } from 'react-redux';
 import LottieAnimation from '../../Lotties';
 import coming from '../../Assets/animation/Coming.json'
+import loading2 from "../../Assets/animation/loadingmain.json"
+import Comingmodal from '../../Components/Modals/Comingmodal';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({loading}) => {
+    const [modal, setmodal]= useState(false);
+    const toggleModal = ()=>{
+        setmodal(!modal)
+    }
     return ( 
         <div className="home">
+            {loading && (
+                <div className="modal-background modal-background-2">
+                    <div className="loading-animation-2">
+                        <LottieAnimation data={loading2}/>
+                    </div>
+                </div>
+            )}
             <h4 className="page-title">Dashboard</h4>
             <p className="page-body">Here’s an overview of your content’s performance</p>
             <div className="home-body">
@@ -62,7 +76,7 @@ const Home = () => {
                             <p className='quick-head-text'>Quick Actions</p>
                         </div>
                         <div className="quick-action-con">
-                            <div className="action">
+                            <div className="action" onClick={toggleModal}>
                                 <div className="action-left">
                                     <div className="action-icon">
                                         <FiCalendar/>
@@ -76,7 +90,7 @@ const Home = () => {
                                     <HiOutlineChevronRight/>
                                 </div>
                             </div>
-                            <div className="action">
+                            <div className="action" onClick={toggleModal}>
                                 <div className="action-left">
                                     <div className="action-icon">
                                         <BsChatText/>
@@ -90,20 +104,22 @@ const Home = () => {
                                     <HiOutlineChevronRight/>
                                 </div>
                             </div>
-                            <div className="action">
-                                <div className="action-left">
-                                    <div className="action-icon">
-                                        <IoLocationOutline/>
+                            <Link to="/create/upload">
+                                <div className="action">
+                                    <div className="action-left">
+                                        <div className="action-icon">
+                                            <IoLocationOutline/>
+                                        </div>
+                                        <div className="action-text">
+                                            <h3>Upload Lecture Documents</h3>
+                                            <p>Schedule a live class sessionDisplay your lecture note for student access</p>
+                                        </div>
                                     </div>
-                                    <div className="action-text">
-                                        <h3>Upload Lecture Documents</h3>
-                                        <p>Schedule a live class sessionDisplay your lecture note for student access</p>
+                                    <div className="action-right">
+                                        <HiOutlineChevronRight/>
                                     </div>
                                 </div>
-                                <div className="action-right">
-                                    <HiOutlineChevronRight/>
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="recent-message">
@@ -172,6 +188,7 @@ const Home = () => {
                         </div> */}
                     </div>
                 </div>
+                {modal && (<Comingmodal togglemodal={toggleModal}/>)}
             </div>
         </div>
     );

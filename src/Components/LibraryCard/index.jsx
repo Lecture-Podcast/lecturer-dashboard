@@ -14,11 +14,11 @@ const LibraryCard = ({ status, title, type, time }) => {
   } else if (status === "Completed") {
     statusColor = "#E7F6EC";
   }
-  if (type === "audio") {
+  if (type === "Audio") {
     anime = audio;
-  } else if (type === "video") {
+  } else if (type === "Video") {
     anime = video;
-  } else if (type === "file") {
+  } else if (type === "File") {
     anime = file;
   }
   return (

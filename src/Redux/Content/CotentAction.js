@@ -80,7 +80,7 @@ export const videofaliure = (error)=>{
 }
 
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1";
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjViY2IxNmI1NjU1ZjVjODI1MDlhNTM3IiwiZW1haWwiOiJqb2huZG9lMUBnbWFpbC5jb20iLCJmdWxsbmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzExMzg2NzA5fQ.5-RuT0OO7jnzepsXnJGGd18Z2TrlRbPQb5JXYqOjzuI"
+const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjYwMjgzNjA1MTdlOTA4OTg3OTdiZTRmIiwiZW1haWwiOiJqb2huZG9lMjc4QGdtYWlsLmNvbSIsImZ1bGxuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE3MTE0NDA3NTd9.KLJbmkUyJJDt72N-nE8XqqnWkNgD0Rb6EP7tuxNwYLo"
 
 
 export const fetchcontent = ( ) => {

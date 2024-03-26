@@ -38,6 +38,17 @@
     background-color: white;
     border-radius: 8px;
 }
+.modalsss{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    position: relative;
+    padding: 30px;
+    /* padding-bottom: 103px; */
+    width: 30% !important;
+    border-radius: 8px;
+}
 .onetime-modal{
     display: flex;
     flex-direction: column;

@@ -10,6 +10,8 @@ import BasicDateCalendar from '../../Components/Calendar/Calendar';
 import Graph from '../../Components/Chart/Chart';
 import { fetchprofile } from '../../Redux/Profile/ProfileAction';
 import { connect } from 'react-redux';
+import LottieAnimation from '../../Lotties';
+import coming from '../../Assets/animation/Coming.json'
 
 const Home = () => {
     return ( 
@@ -112,7 +114,15 @@ const Home = () => {
                                 <HiOutlineChevronRight/>
                             </div>
                         </div>
-                        <div className="messages">
+                        <div className="coming-soon-outer">
+                            <div className="comingsoon-animation">
+                                <LottieAnimation data={coming}/>
+                                <p className="coming-soon-text">Coming soon</p>
+                            </div>
+                        </div>
+                       
+                        
+                        {/* <div className="messages">
                             <div className="messages-left">
                                     <div className="message-con">
                                         <img src={messages}/>
@@ -159,7 +169,7 @@ const Home = () => {
                                         View Message
                                     </button>
                                 </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

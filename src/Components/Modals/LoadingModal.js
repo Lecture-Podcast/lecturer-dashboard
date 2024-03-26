@@ -3,17 +3,13 @@ import './Modal.css'
 import { FaTimes } from 'react-icons/fa';
 import LottieAnimation from '../../Lotties';
 import success from '../../Assets/animation/SUCCESS.json'
-const Uploadmodal = ({message, togglemodal}) => {
+const Loadingmodal = ({message, togglemodal}) => {
     return ( 
         <div className="modal-background">
-            <div className="modalss">
+            <div className="modalsss">
                 <div className="onetime-modal">
                     <div className="animation">
                         <LottieAnimation data={success}/>
-                    </div>
-                    <p className="create-payment">{message}</p>
-                    <div className="signup-buttons">
-                        <button class="submit-buttons" onClick={togglemodal}>Ok</button>
                     </div>
                 </div>
             </div>
@@ -21,4 +17,4 @@ const Uploadmodal = ({message, togglemodal}) => {
     );
 }
  
-export default Uploadmodal;
+export default Loadingmodal;

@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./content-library.css";
 import LibraryCard from "../../Components/LibraryCard";
+import { fetchcontent } from "../../Redux/Content/CotentAction";
+import { connect } from "react-redux";
 
-const ContentLibrary = () => {
+const ContentLibrary = ({
+  fetchcontent,
+  loading,
+  error,
+  data
+}) => {
+  console.log(data)
+  useEffect(()=>{
+    fetchcontent()
+  },[])
   return (
     <section>
       <div>
@@ -21,13 +32,18 @@ const ContentLibrary = () => {
           </div>
 
           <div className="cl-card-container">
-            <LibraryCard status="draft" />
+            {data?.contents?.map(content => {
+              return(
+                <LibraryCard status="draft" title={content.course_title} type={content.content_type} time={content.timestamp.slice(0,10)}/>
+              )
+            })}
+            {/* <LibraryCard status="draft" />
             <LibraryCard status="Upcomming" />
             <LibraryCard status="Completed" />
             <LibraryCard status="draft" />
             <LibraryCard status="Upcomming" />
             <LibraryCard status="Completed" />
-            <LibraryCard status="draft" />
+            <LibraryCard status="draft" /> */}
           </div>
         </div>
       </div>
@@ -35,4 +51,21 @@ const ContentLibrary = () => {
   );
 };
 
-export default ContentLibrary;
+
+const mapStoreToProps = (state) => {
+  console.log(state)
+  return {
+    loading: state.content.loading,
+    error: state.content.error,
+    data: state.content.data
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchcontent: () => {
+          dispatch(fetchcontent());
+      },
+  };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(ContentLibrary);

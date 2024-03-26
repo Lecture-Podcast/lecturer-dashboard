@@ -1,8 +1,12 @@
 import React from "react";
 import "./styles.css";
-
-const LibraryCard = ({ status }) => {
+import LottieAnimation from "../../Lotties";
+import audio from '../../Assets/animation/audio.json';
+import video from '../../Assets/animation/video.json';
+import file from '../../Assets/animation/file.json';
+const LibraryCard = ({ status, title, type, time }) => {
   let statusColor = "";
+  let anime
   if (status === "draft") {
     statusColor = "#FBEAE9";
   } else if (status === "Upcomming") {
@@ -10,27 +14,38 @@ const LibraryCard = ({ status }) => {
   } else if (status === "Completed") {
     statusColor = "#E7F6EC";
   }
+  if (type === "audio") {
+    anime = audio;
+  } else if (type === "video") {
+    anime = video;
+  } else if (type === "file") {
+    anime = file;
+  }
   return (
     <div className="library-card-container">
-      <div className="image-container"></div>
+      <div className="image-container">
+        <div className="content-animation">
+          <LottieAnimation data={anime}/>
+        </div>
+      </div>
       <div className="content">
         <div className="wrap">
-          <p className="name">ContentName</p>
-          <p
+          <p className="name">{title}</p>
+          {/* <p
             className="status"
             style={{
               backgroundColor: statusColor,
             }}
           >
             {status}
-          </p>
+          </p> */}
         </div>
         <p className="text">
           Amet eget tellus condimentum molestie scelerisque a aliquam pretium.
           Ipsum id odio a duis. Porttitor auctor volutpat quis ullamcorper est.
         </p>
         <div>
-          <p className="date">Uploaded 12/04/2024</p>
+          <p className="date">Uploaded {time}</p>
         </div>
       </div>
     </div>

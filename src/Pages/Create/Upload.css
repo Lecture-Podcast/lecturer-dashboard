@@ -40,6 +40,11 @@
     align-items: center;
     justify-content: center;
 }
+.upload-animation{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
 .drag-upload-2{
     
     border: none !important;

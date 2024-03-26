@@ -1,10 +1,11 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import Empty from "../../Assets/images/Empty.svg";
 import "./content.css";
 import { Link } from "react-router-dom";
+import { toggleOverlay } from "../../Redux/overlay/actions";
 
-const Content = () => {
+const Content = ({ handleOverlay }) => {
   return (
     <section>
       <div>
@@ -23,11 +24,22 @@ const Content = () => {
             You have not added any content. Click the <br /> button below to
             create one.
           </p>
-          <Link to='/create-library'><button className="content-button">Create content</button></Link>
+          <button
+            className="content-button"
+            onClick={() => handleOverlay(true)}
+          >
+            Create content
+          </button>
         </div>
       </div>
     </section>
   );
 };
 
-export default Content;
+const mapStoreToProps = (state) => {};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleOverlay: (payload) => dispatch(toggleOverlay(payload)),
+  };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(Content);

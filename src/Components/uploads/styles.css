@@ -1,0 +1,50 @@
+.upload-container {
+  background-color: white;
+  width: 90%;
+  max-width: 30em;
+  padding: 2.4em;
+  border-radius: 0.5em;
+}
+
+.icon-bg {
+  background: #f0f2f5;
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+
+.details {
+  align-items: center;
+  gap: 1em;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.text1 {
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.text2 {
+  font-weight: 400;
+  color: #475367;
+  font-size: 0.7em;
+}

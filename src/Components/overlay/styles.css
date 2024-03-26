@@ -1,0 +1,15 @@
+.overlay-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Adjust the last value (0.5) to set the opacity */
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

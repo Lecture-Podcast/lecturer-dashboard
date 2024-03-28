@@ -24,7 +24,7 @@ const Home = ({loading}) => {
     return ( 
         <div className="home">
             {loading && (
-                <div className="modal-background modal-background-2">
+                <div className="modal-background">
                     <div className="loading-animation-2">
                         <LottieAnimation data={loading2}/>
                     </div>

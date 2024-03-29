@@ -1,0 +1,6 @@
+
+[build.environment]
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[build]
+  command = "npm install $NPM_FLAGS"

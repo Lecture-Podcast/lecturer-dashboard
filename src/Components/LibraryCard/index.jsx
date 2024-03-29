@@ -4,7 +4,8 @@ import LottieAnimation from "../../Lotties";
 import audio from '../../Assets/animation/audio.json';
 import video from '../../Assets/animation/video.json';
 import file from '../../Assets/animation/file.json';
-const LibraryCard = ({ status, title, type, time }) => {
+import ContentModal from "../Modals/ContentModal";
+const LibraryCard = ({ status, title, type, time, togglemodal, modal, url }) => {
   let statusColor = "";
   let anime
   if (status === "draft") {
@@ -22,7 +23,7 @@ const LibraryCard = ({ status, title, type, time }) => {
     anime = file;
   }
   return (
-    <div className="library-card-container">
+    <div className="library-card-container" onClick={togglemodal}>
       <div className="image-container">
         <div className="content-animation">
           <LottieAnimation data={anime}/>
@@ -48,6 +49,7 @@ const LibraryCard = ({ status, title, type, time }) => {
           <p className="date">Uploaded {time}</p>
         </div>
       </div>
+      {modal && (<ContentModal content_url={url}/>)}
     </div>
   );
 };

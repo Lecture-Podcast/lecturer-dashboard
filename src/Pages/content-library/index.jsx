@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./content-library.css";
 import Empty from "../../Assets/images/Empty.svg";
 import LibraryCard from "../../Components/LibraryCard";
@@ -13,10 +13,14 @@ const ContentLibrary = ({
   error,
   data
 }) => {
+  const [modal, setmodal] = useState(false)
   console.log(data)
   useEffect(()=>{
     fetchcontent()
   },[])
+  const togglemodal = ()=>{
+    setmodal(!modal)
+  }
   return (
     <>
     {loading ? (
@@ -47,7 +51,7 @@ const ContentLibrary = ({
                   <div className="cl-card-container">
                     {data?.contents?.map(content => {
                       return(
-                        <LibraryCard status="draft" title={content.course_title} type={content.content_type} time={content.timestamp.slice(0,10)}/>
+                        <LibraryCard togglemodal={togglemodal} modal={modal} status="draft" title={content.course_title} type={content.content_type} time={content.timestamp.slice(0,10)} url={content.content_url}/>
                       )
                     })}
                     {/* <LibraryCard status="draft" />

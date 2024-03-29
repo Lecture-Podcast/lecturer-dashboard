@@ -1,5 +1,25 @@
-import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE } from "./ContentType"
+import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE } from "./ContentType"
 import axios from "axios";
+
+
+//FOR Fetch content
+export const fetchcontentrequest = ()=>{
+    return{
+        type:FETCH_CONTENT_REQUEST
+    }
+}
+export const fetchcontentsuccess = (data)=>{
+    return{
+        type:FETCH_CONTENT_SUCCESS,
+        payload: data
+    }
+}
+export const fetchcontentfaliure = (error)=>{
+    return{
+        type:FETCH_CONTENT_FALIURE,
+        payload: error
+    }
+}
 
 
 //FOR Audio content
@@ -60,7 +80,32 @@ export const videofaliure = (error)=>{
 }
 
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1";
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjViY2IxNmI1NjU1ZjVjODI1MDlhNTM3IiwiZW1haWwiOiJqb2huZG9lMUBnbWFpbC5jb20iLCJmdWxsbmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzExMTMwMTk0fQ.lT6sKuHPdDey5RHIZIJMebmx58Vv-I8lojrhEFgAuOw"
+const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjYwMjgzNjA1MTdlOTA4OTg3OTdiZTRmIiwiZW1haWwiOiJqb2huZG9lMjc4QGdtYWlsLmNvbSIsImZ1bGxuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE3MTE0NDA3NTd9.KLJbmkUyJJDt72N-nE8XqqnWkNgD0Rb6EP7tuxNwYLo"
+
+
+export const fetchcontent = ( ) => {
+    return async (dispatch) => {
+        dispatch(fetchcontentrequest())
+
+        let datas = JSON.parse(localStorage.getItem("auth"));
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+        };
+        axios.get(`${baseURl}/lecturer/content/all-content`, { headers: headers })
+        .then( response => {
+            const data = response.data
+            console.log(data)
+            dispatch(fetchcontentsuccess(data))
+        })
+        .catch(error =>{
+            const errorMsg = error.message
+            dispatch(fetchcontentfaliure(errorMsg))
+        })
+       
+    }
+}
+
 export const createAudio = (poststate, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(audiorequest())
@@ -75,7 +120,7 @@ export const createAudio = (poststate, history, setErrorHandler) => {
             const response = await axios.post(`${baseURl}/lecturer/content/upload-audio-content`, poststate,{ headers: headers })
             const data = response
             dispatch(audiosuccess(data))
-            if(response.status===200){
+            if(response.status===201){
                 history();
             }
         }
@@ -101,7 +146,7 @@ export const createFile = (poststate, history, setErrorHandler) => {
             const response = await axios.post(`${baseURl}/lecturer/content/upload-file-content`, poststate,{ headers: headers })
             const data = response
             dispatch(filesuccess(data))
-            if(response.status===200){
+            if(response.status===201){
                 history();
             }
         }
@@ -126,7 +171,7 @@ export const createvideo = (poststate, history, setErrorHandler) => {
             const response = await axios.post(`${baseURl}/lecturer/content/upload-video-content`, poststate,{ headers: headers })
             const data = response
             dispatch(videosuccess(data))
-            if(response.status===200){
+            if(response.status===201){
                 history();
             }
         }

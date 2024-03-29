@@ -12,7 +12,7 @@ export default function LottieAnimation({ lotti , data}) {
   };
 
   return (
-    <div className="animation">
+    <div>
       <Lottie options={defaultOptions} animationData={data}/>
     </div>
   );

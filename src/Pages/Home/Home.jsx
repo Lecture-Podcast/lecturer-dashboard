@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Card from "../../Components/Card/Card";
 import { FiCalendar } from "react-icons/fi";
@@ -10,6 +10,11 @@ import BasicDateCalendar from "../../Components/Calendar/Calendar";
 import Graph from "../../Components/Chart/Chart";
 import { fetchprofile } from "../../Redux/Profile/ProfileAction";
 import { connect } from "react-redux";
+import LottieAnimation from "../../Lotties";
+import coming from "../../Assets/animation/Coming.json";
+import loading2 from "../../Assets/animation/loadingmain.json";
+import Comingmodal from "../../Components/Modals/Comingmodal";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (

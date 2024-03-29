@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import loader from '../../Assets/animation/loading.json'
 import { createAudio, createFile, createvideo } from "../../Redux/Content/CotentAction";
 import LottieAnimation from "../../Lotties";
+import Uploadmodal from "../../Components/Modals/UploadModal";
 const Uplaod = ({
         createAudio, 
         createVideo, 
@@ -14,7 +15,10 @@ const Uplaod = ({
         videoloading,
         videoerror,
         fileloading,
-        fileerror
+        fileerror,
+        audios,
+        video,
+        file
     }) => {
     const [audio, setAudio] = useState(null);
     const [content_category, setcontent_category] = useState('');
@@ -24,24 +28,38 @@ const Uplaod = ({
     const [mbOutput, setMbOutput] = useState('');
     const [files, setFiles] = useState([]);
     const [selectedfile, setselectedfile] = useState(null);
+    const [upload, setUpload] = useState(false)
     const [success, setSuccess] = useState(false);
     const inputRef = useRef();
     const handleDragOver = (event) => {
         event.preventDefault();
     };
+    const toggleuploadmodal = ()=>{
+        setUpload(false)
+    }
+    console.log(audios)
     const handleSubmit = async (event) => {
         event.preventDefault();
         // let data = event.target.files[0]
         setFiles([...files, event.target.files[0]])
         const formData = new FormData();
-        formData.append('audio', event.target.files[0]);
-        formData.append('content_category', "studies");
+        if(event.target.files[0].type.split('/')[0]=="audio"){
+            formData.append('audio', event.target.files[0]);
+        }
+        if(event.target.files[0].type.split('/')[0]=="video"){
+            formData.append('video', event.target.files[0]);
+        }
+        if(event.target.files[0].type.split('/')[0]=="application"){
+            formData.append('document', event.target.files[0]);
+        }
+        formData.append('content_category', "science");
         formData.append('course_title', "geography");
+        formData.append('thumbnail', "");
         event.preventDefault();
         if(event.target.files[0].type.split('/')[0]=="audio"){
             try{ 
                 await createAudio(formData, ()=>{ 
-                   
+                   setUpload(true)
                 }, ()=>{ 
                     
                 });
@@ -52,7 +70,7 @@ const Uplaod = ({
         if(event.target.files[0].type.split('/')[0]=="video"){
             try{ 
                 await createVideo(formData, ()=>{ 
-                   
+                   setUpload(true)
                 }, ()=>{ 
                     
                 });
@@ -63,7 +81,7 @@ const Uplaod = ({
         if(event.target.files[0].type.split('/')[0]=="application"){
             try{ 
                 await createFile(formData, ()=>{ 
-                   
+                   setUpload(true)
                 }, ()=>{ 
                     
                 });
@@ -77,9 +95,19 @@ const Uplaod = ({
         let data = event.dataTransfer.files[0]
         setFiles([...files, data])
         const formData = new FormData();
-        formData.append('audio', event.dataTransfer.files[0]);
+      
+        if(event.dataTransfer.files[0].type.split('/')[0]=="audio"){
+            formData.append('audio', event.dataTransfer.files[0]);
+        }
+        if(event.dataTransfer.files[0].type.split('/')[0]=="video"){
+            formData.append('video', event.dataTransfer.files[0]);
+        }
+        if(event.dataTransfer.files[0].type.split('/')[0]=="application"){
+            formData.append('document', event.dataTransfer.files[0]);
+        }
         formData.append('content_category', "studies");
         formData.append('course_title', "geography");
+        formData.append('thumbnail', "");
         event.preventDefault();
         if(event.dataTransfer.files[0].type.split('/')[0]=="audio"){
             try{ 
@@ -170,7 +198,9 @@ const Uplaod = ({
                         >
                             {(audioloading || videoloading || fileloading) ? (
                                 <div className="upload-loading">
-                                    <LottieAnimation data={loader}/>
+                                    <div className="upload-animation">
+                                        <LottieAnimation data={loader}/>
+                                    </div>
                                     <p className="upload-file">Uploading</p>
                                 </div>
                             ) : (
@@ -213,6 +243,7 @@ const Uplaod = ({
                     </div>
                 </div>
             )}
+            {upload && (<Uploadmodal message={audios?.data?.message || video?.data?.message || file?.data?.message} togglemodal={toggleuploadmodal}/>)}
         </div>
     );
 }
@@ -221,7 +252,7 @@ const mapStoreToProps = (state) => {
     return {
         audioloading: state.createAudio.loading,
         audioerror: state.createAudio.error,
-        audio: state.createAudio.data,
+        audios: state.createAudio.data,
         videoloading: state.createVideo.loading,
         videoerror: state.createVideo.error,
         video: state.createVideo.data,

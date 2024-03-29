@@ -217,8 +217,28 @@
     border: 1px solid #F3A218;
     border-radius: 8px;
 }
-
-
+.coming-soon-outer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.comingsoon-animation{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.coming-soon-text{
+    color: #101928;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Inter";
+    text-align: center;
+}
+.loading-animation-2{
+    width: 20%;
+}
 @media only screen and (max-width: 767px) { 
     .home-body-bottom{
         flex-direction: column;

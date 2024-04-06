@@ -1,0 +1,217 @@
+.sign-up {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.sign-up .left-side {
+  flex: 1;
+  background-image: url("../../../Assets/images/Rectangle.png");
+  color: white;
+  padding: 20px;
+  position: relative;
+}
+.loader{
+  animation: spin 1s linear infinite;
+}
+
+.sign-up .left-side .logo {
+  padding: 4rem 3.5rem;
+}
+
+.sign-up .left-side p {
+  color: #fff;
+  position: absolute;
+  bottom: 112px;
+  padding: 0rem 3.5rem;
+  text-align: justify;
+  font-family: "General Sans";
+  font-size: 2.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 3.875rem;
+}
+
+.sign-up .right-side {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 38%;
+  margin: 0 4vw;
+  padding: 4vh;
+}
+
+.sign-up .right-side h1 {
+  margin: 1vh 0;
+}
+
+.sign-up form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2vh 0;
+}
+
+.sign-up form select {
+  border-radius: 10px;
+  width: 100%;
+  padding: 12px 6px;
+  background-color: #fafafa;
+  color: rgba(1, 0, 58, 0.41);
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 400;
+  outline: none;
+  border: none;
+}
+
+.sign-up input {
+  outline: none;
+  border: none;
+  width: 100% !important;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  background-color: #fafafa !important;
+  border-radius: 10px !important;
+  font-family: "Poppins";
+  font-size: 15px;
+}
+
+.sign-up form div:first-child h1 {
+  font-size: 33px;
+  font-family: "General Sans", sans-serif;
+  font-weight: 600;
+  /* wordWrap: 'break-word' */
+}
+
+.sign-up form div:first-child h1 span:first-child {
+  color: #1a2129;
+}
+.sign-up form div:first-child h1 span:nth-child(2) {
+  color: #ffa500;
+}
+
+.sign-up form div:first-child h1 span:nth-child(3) {
+  color: #222087;
+}
+
+.sign-up form div:first-child p {
+  color: #5e6b74;
+  font-size: 18px;
+  font-family: "Poppins";
+  font-weight: 400;
+  padding-bottom: 3vh;
+}
+
+.sign-up form .password {
+  position: relative;
+}
+
+.sign-up form .eyes {
+  color: rgba(1, 0, 58, 0.41);
+}
+
+.sign-up form .password .input-absolute {
+  position: absolute;
+  right: 1vw;
+  top: 2vh;
+}
+
+.sign-up .check-con {
+  display: grid;
+  grid-template-columns: 10px 300px;
+  font-size: 12px;
+}
+
+.sign-up .check-con p {
+  color: #5e6b74;
+  font-family: "Poppins";
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.sign-up form button {
+  border-radius: 10px;
+  width: 100%;
+  /* background-color: rgba(255, 165, 0, 0.6); */
+  padding: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 600;
+  /* wordWrap: 'break-word' */
+}
+
+.signup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2vw;
+}
+
+.sign-up form .google-btn {
+  color: #5e6b74;
+  padding: 8px 10px 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #9797974d;
+  gap: 0 2vw;
+}
+.sign-up form .google-btn div {
+  width: 1vw;
+}
+
+.sign-up .login-support {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4vh;
+}
+
+.sign-up .login-support div:first-child {
+  color: rgba(1, 0, 58, 0.41);
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: "400";
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}
+.sign-up .login-support div:first-child a {
+  color: #ffa500;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 600;
+  line-height: 32px;
+  /* wordwrap: "break-word"; */
+}
+
+.sign-up .login-support div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 1vw;
+}
+
+.sign-up .login-support div:nth-child(2) img {
+  width: 10%;
+}
+
+.sign-up .login-support div:nth-child(2) p {
+  text-decoration: underline;
+  color: #3331a3;
+  font-size: 12px;
+  font-family: "Poppins";
+  font-weight: 400;
+
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}

@@ -1,4 +1,4 @@
-import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE } from "./ContentType"
+import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_REQUEST, FETCH_SINGLE_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_SUCCESS } from "./ContentType"
 import axios from "axios";
 
 
@@ -21,7 +21,23 @@ export const fetchcontentfaliure = (error)=>{
     }
 }
 
-
+export const fetchsinglecontentrequest = ()=>{
+    return{
+        type:FETCH_SINGLE_CONTENT_REQUEST
+    }
+}
+export const fetchsinglecontentsuccess = (data)=>{
+    return{
+        type:FETCH_SINGLE_CONTENT_SUCCESS,
+        payload: data
+    }
+}
+export const fetchsinglecontentfaliure = (error)=>{
+    return{
+        type:FETCH_SINGLE_CONTENT_FALIURE,
+        payload: error
+    }
+}
 //FOR Audio content
 export const audiorequest = ()=>{
     return{
@@ -90,7 +106,7 @@ export const fetchcontent = ( ) => {
         let datas = JSON.parse(localStorage.getItem("auth"));
         const headers = {
             "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
+            authorization: `Bearer ${datas.token}`,
         };
         axios.get(`${baseURl}/lecturer/content/all-content`, { headers: headers })
         .then( response => {
@@ -105,6 +121,28 @@ export const fetchcontent = ( ) => {
        
     }
 }
+export const fetchsinglecontent = ({id}) => {
+    return async (dispatch) => {
+        dispatch(fetchsinglecontentrequest())
+
+        let datas = JSON.parse(localStorage.getItem("auth"));
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas.token}`,
+        };
+        axios.get(`${baseURl}/lecturer/content/single-content?id=${id}`, { headers: headers })
+        .then( response => {
+            const data = response.data
+            console.log(data)
+            dispatch(fetchsinglecontentsuccess(data))
+        })
+        .catch(error =>{
+            const errorMsg = error.message
+            dispatch(fetchsinglecontentfaliure(errorMsg))
+        })
+       
+    }
+}
 
 export const createAudio = (poststate, history, setErrorHandler) => {
     return async (dispatch) => {
@@ -114,7 +152,7 @@ export const createAudio = (poststate, history, setErrorHandler) => {
             let datas = JSON.parse(localStorage.getItem("auth"));
             const headers = {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${datas.token}`,
             };
             console.log("THIS IS POSTSTATE", poststate)
             const response = await axios.post(`${baseURl}/lecturer/content/upload-audio-content`, poststate,{ headers: headers })
@@ -141,7 +179,7 @@ export const createFile = (poststate, history, setErrorHandler) => {
             let datas = JSON.parse(localStorage.getItem("auth"));
             const headers = {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${datas.token}`,
             };
             const response = await axios.post(`${baseURl}/lecturer/content/upload-file-content`, poststate,{ headers: headers })
             const data = response
@@ -166,7 +204,7 @@ export const createvideo = (poststate, history, setErrorHandler) => {
             let datas = JSON.parse(localStorage.getItem("auth"));
             const headers = {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${datas.token}`,
             };
             const response = await axios.post(`${baseURl}/lecturer/content/upload-video-content`, poststate,{ headers: headers })
             const data = response

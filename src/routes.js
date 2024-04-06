@@ -7,19 +7,21 @@ import Create from "./Pages/Create/Create";
 import Uplaod from "./Pages/Create/upload";
 import Content from "./Pages/create-content/crearte-content";
 import ContentLibrary from "./Pages/content-library";
+import Login from "./Pages/Authentication/Login";
+import SignUp from "./Pages/Authentication/SignUp";
 
 export default function Router() {
   const routes = useRoutes([
-    // {
-    //   path: '/',
-    //   element: <Login/>, // Renders LoginPage component when the root path is accessed
-    // },
-    // {
-    //   path: '/signup',
-    //   element: <Signup/>, // Renders LoginPage component when the root path is accessed
-    // },
     {
-      path: "/",
+      path: '/',
+      element: <Login/>, // Renders LoginPage component when the root path is accessed
+    },
+    {
+      path: '/signup',
+      element: <SignUp/>, // Renders LoginPage component when the root path is accessed
+    },
+    {
+      path: "/home",
       element: <Layout />,
       children: [
         { index: true, element: <Home /> },

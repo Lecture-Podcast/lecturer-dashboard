@@ -5,7 +5,7 @@ import audio from '../../Assets/animation/audio.json';
 import video from '../../Assets/animation/video.json';
 import file from '../../Assets/animation/file.json';
 import ContentModal from "../Modals/ContentModal";
-const LibraryCard = ({ status, title, type, time, togglemodal, modal, url }) => {
+const LibraryCard = ({ id, status, title, type, time, togglemodal, modal, url }) => {
   let statusColor = "";
   let anime
   if (status === "draft") {

@@ -1,4 +1,4 @@
-import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_SUCCESS, FILE_FALIURE, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE } from "./ContentType"
+import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_SUCCESS, FILE_FALIURE, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_REQUEST, FETCH_SINGLE_CONTENT_SUCCESS, FETCH_SINGLE_CONTENT_FALIURE } from "./ContentType"
 
 const initialState = {
     loading: false,
@@ -22,6 +22,31 @@ export const fetchcontentReducer = (state = initialState, action) => {
                 error:''
             }
         case FETCH_CONTENT_FALIURE:
+            return{
+                loading: false,
+                data: [],
+                error:action.payload
+            }
+        default: return state
+    }
+}
+
+
+// FOR Audio Content
+export const fetchsinglecontentReducer = (state = initialState, action) => {
+    switch(action.type){
+        case FETCH_SINGLE_CONTENT_REQUEST:
+            return{
+                ...state,
+                loading: true
+            }
+        case FETCH_SINGLE_CONTENT_SUCCESS:
+            return{
+                loading: false,
+                data: action.payload,
+                error:''
+            }
+        case FETCH_SINGLE_CONTENT_FALIURE:
             return{
                 loading: false,
                 data: [],

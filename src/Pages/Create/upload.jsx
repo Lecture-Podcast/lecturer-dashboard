@@ -27,6 +27,7 @@ const Uplaod = ({
     const [kbInput, setKbInput] = useState('');
     const [mbOutput, setMbOutput] = useState('');
     const [files, setFiles] = useState([]);
+    const [modal, setModal] = useState(false)
     const [selectedfile, setselectedfile] = useState(null);
     const [upload, setUpload] = useState(false)
     const [success, setSuccess] = useState(false);
@@ -153,98 +154,129 @@ const Uplaod = ({
     }, [files])
     console.log(files)
     return ( 
-        <div className="upload">
-            <h4 className="page-title">Create</h4>
-            <p className="page-body">Here’s an overview of your content’s performance</p>
-            {!success && (
-                    <div 
-                    className="upload-box"
-                    onDragOver={handleDragOver}
-                    onDrop={handleDrop}
-                    >
-                        {(audioloading || videoloading || fileloading) ? (
-                            <div className="upload-loading">
-                                <LottieAnimation data={loader}/>
-                                <p className="upload-file">Uploading</p>
-                            </div>
-                        ): (
-                            <>
-                                <div className="drag-upload">
-                                    <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
-                                    <div className="upload-icon">
-                                        <FaUpload/>
-                                    </div>
-                                    <p className="upload-text"><span>click to upload</span> or drag and drop</p>
-                                    <p className="upload-file">PDF, JPG, MP3 or Video </p>
-                                    <p className="or">OR</p>
-                                </div>
-                                <hr></hr>
-                                <div className="browse-upload">
-                                    <button onClick={(e) => {inputRef.current.click(); e.preventDefault();}}>Browse Files</button>
-                                </div>
-                            </>
-                        )}
-                        
-                </div>
-            )}
-            {success && (
-                <div className="upload-box-2">
-                    <h3>Upload Documents</h3>
-                    <div className="upload-space">
+        <>
+            <div className="upload">
+                <h4 className="page-title">Create</h4>
+                <p className="page-body">Here’s an overview of your content’s performance</p>
+                {!success && (
                         <div 
-                            className="drag-upload drag-upload-2"
-                            onDragOver={handleDragOver}
-                            onDrop={handleDrop}
+                        className="upload-box"
+                        onDragOver={handleDragOver}
+                        onDrop={handleDrop}
                         >
                             {(audioloading || videoloading || fileloading) ? (
                                 <div className="upload-loading">
-                                    <div className="upload-animation">
-                                        <LottieAnimation data={loader}/>
-                                    </div>
+                                    <LottieAnimation data={loader}/>
                                     <p className="upload-file">Uploading</p>
                                 </div>
-                            ) : (
+                            ): (
                                 <>
-                                    <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
-                                    <div className="upload-icon">
-                                        <FaUpload/>
+                                    <div className="drag-upload">
+                                        <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
+                                        <div className="upload-icon">
+                                            <FaUpload/>
+                                        </div>
+                                        <p className="upload-text"><span>click to upload</span> or drag and drop</p>
+                                        <p className="upload-file">PDF, JPG, MP3 or Video </p>
+                                        <p className="or">OR</p>
                                     </div>
-                                    <p className="upload-text"><span onClick={(e) => {inputRef.current.click(); e.preventDefault();}}>click to upload</span> or drag and drop</p>
-                                    <p className="upload-file">PDF, JPG, MP3 or Video </p>
+                                    <hr></hr>
+                                    <div className="browse-upload">
+                                        <button onClick={(e) => {inputRef.current.click(); e.preventDefault();}}>Browse Files</button>
+                                    </div>
                                 </>
                             )}
                             
+                    </div>
+                )}
+                {success && (
+                    <div className="upload-box-2">
+                        <h3>Upload Documents</h3>
+                        <div className="upload-space">
+                            <div 
+                                className="drag-upload drag-upload-2"
+                                onDragOver={handleDragOver}
+                                onDrop={handleDrop}
+                            >
+                                {(audioloading || videoloading || fileloading) ? (
+                                    <div className="upload-loading">
+                                        <div className="upload-animation">
+                                            <LottieAnimation data={loader}/>
+                                        </div>
+                                        <p className="upload-file">Uploading</p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
+                                        <div className="upload-icon">
+                                            <FaUpload/>
+                                        </div>
+                                        <p className="upload-text"><span onClick={(e) => {inputRef.current.click(); e.preventDefault();}}>click to upload</span> or drag and drop</p>
+                                        <p className="upload-file">PDF, JPG, MP3 or Video </p>
+                                    </>
+                                )}
+                                
+                            </div>
+                        </div>
+                        <div className="uploaded-documents">
+                            <p className="uploaded-text">Uploaded Files</p>
+                            <div className="file-lists">
+                            {files.map((file, idx) => {
+                                return(
+                                    <div className="file">
+                                        <div className="file-left">
+                                            <div className="file-icon">
+                                                <FaRegFilePdf/>
+                                            </div>
+                                            <div className="file-details">
+                                                <h5>{file.name}</h5>
+                                                <p>11 Sep, 2023 | 12:24pm . {(((parseFloat(file.size)/1000).toFixed(2))/1024).toFixed(2)}MB</p>
+                                            </div>
+                                        </div>
+                                        <div className="file-right">
+
+                                        </div>
+                                    </div>
+                                )
+                
+                            } )}
+                                
+                            </div>
                         </div>
                     </div>
-                    <div className="uploaded-documents">
-                        <p className="uploaded-text">Uploaded Files</p>
-                        <div className="file-lists">
-                        {files.map((file, idx) => {
-                            return(
-                                <div className="file">
-                                    <div className="file-left">
-                                        <div className="file-icon">
-                                            <FaRegFilePdf/>
-                                        </div>
-                                        <div className="file-details">
-                                            <h5>{file.name}</h5>
-                                            <p>11 Sep, 2023 | 12:24pm . {(((parseFloat(file.size)/1000).toFixed(2))/1024).toFixed(2)}MB</p>
-                                        </div>
-                                    </div>
-                                    <div className="file-right">
-
+                )}
+                {upload && (<Uploadmodal message={audios?.data?.message || video?.data?.message || file?.data?.message} togglemodal={toggleuploadmodal}/>)}
+            </div>
+            {modal && (
+                <div className="modal-background">
+                    <div className="modalss">
+                        <div className="onetime-modal">
+                            <form>
+                                <div className="inputfield">
+                                    <label>Content Title</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Content Title"
+                                    ></input>
+                                </div>
+                                <div className="content-form">
+                                    <div className="inputfield">
+                                        <label>Content Description</label>
+                                        <textarea
+                                            type="text"
+                                            placeholder="Content Description"
+                                        ></textarea>
                                     </div>
                                 </div>
-                            )
-              
-                        } )}
-                            
+                            </form>
+                            <div className="signup-buttons">
+                                <button class="submit-buttons">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             )}
-            {upload && (<Uploadmodal message={audios?.data?.message || video?.data?.message || file?.data?.message} togglemodal={toggleuploadmodal}/>)}
-        </div>
+        </>
     );
 }
 const mapStoreToProps = (state) => {

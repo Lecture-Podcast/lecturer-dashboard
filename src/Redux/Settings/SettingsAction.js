@@ -50,7 +50,7 @@ export const changePassword = (poststate, history, setErrorHandler) => {
             let datas = JSON.parse(localStorage.getItem("auth"));
             const headers = {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${datas.token}`,
             };
             const response = await axios.post(`${baseURl}/student/settings/change-password`, poststate,{ headers: headers })
             const data = response
@@ -74,7 +74,7 @@ export const changeprofileimage = (poststate, history, setErrorHandler) => {
             let datas = JSON.parse(localStorage.getItem("auth"));
             const headers = {
                 "Content-Type": "multipart/form-data",
-                authorization: `Bearer ${token}`,
+                authorization: `Bearer ${datas.token}`,
             };
             console.log("THIS IS POSTSTATE", poststate)
             const response = await axios.post(`${baseURl}student/settings/change-profile-image`, poststate,{ headers: headers })

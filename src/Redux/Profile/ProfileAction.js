@@ -28,7 +28,7 @@ export const fetchprofile = ( ) => {
         let datas = JSON.parse(localStorage.getItem("auth"));
         const headers = {
             "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
+            authorization: `Bearer ${datas.token}`,
         };
         axios.get(`${baseURl}/lecturer-profile`, { headers: headers })
         .then( response => {

@@ -6,7 +6,11 @@ import { fetchcontent } from "../../Redux/Content/CotentAction";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import loading2 from "../../Assets/animation/loadingmain.json"
+import audio from '../../Assets/animation/audio.json';
+import video from '../../Assets/animation/video.json';
+import file from '../../Assets/animation/file.json';
 import LottieAnimation from "../../Lotties";
+import ContentModal from "../../Components/Modals/ContentModal";
 const ContentLibrary = ({
   fetchcontent,
   loading,
@@ -14,13 +18,19 @@ const ContentLibrary = ({
   data
 }) => {
   const [modal, setmodal] = useState(false)
+  const [selectedContent, setSelectedContent] = useState(null); // State to track the selected content
+
+  // Function to handle the click event when a content item is clicked
+  const handleContentClick = (content) => {
+      setSelectedContent(content); // Set the selected content
+  };
   console.log(data)
+  const togglemodal = ()=>{
+    setmodal(true)
+  }
   useEffect(()=>{
     fetchcontent()
   },[])
-  const togglemodal = ()=>{
-    setmodal(!modal)
-  }
   return (
     <>
     {loading ? (
@@ -31,7 +41,7 @@ const ContentLibrary = ({
       </div>
     ):(
       <>
-        {(data.contents) ? (
+        {(data?.contents?.length !== 0) ? (
           <section>
               <div>
                 <h1>Content Library</h1>
@@ -50,17 +60,51 @@ const ContentLibrary = ({
 
                   <div className="cl-card-container">
                     {data?.contents?.map(content => {
+                      let anime
+                      if (content.content_type === "Audio") {
+                        anime = audio;
+                      } else if (content.content_type === "Video") {
+                        anime = video;
+                      } else if (content.content_type === "File") {
+                        anime = file;
+                      }
                       return(
-                        <LibraryCard togglemodal={togglemodal} modal={modal} status="draft" title={content.course_title} type={content.content_type} time={content.timestamp.slice(0,10)} url={content.content_url}/>
+                        // <div key={content._id}>
+                        //   <LibraryCard togglemodal={togglemodal} modal={modal} status="draft" id={content._id} title={content.course_title} type={content.content_type} time={content.timestamp.slice(0,10)} url={content.content_url}/>
+                        // </div>
+                        <>
+                          <a href={content.content_url}>
+                          <div className="library-card-container" key={content._id} onClick={() => {handleContentClick(content.content_url); togglemodal()}}>
+                          <div className="image-container">
+                            <div className="content-animation">
+                              <LottieAnimation data={anime}/>
+                            </div>
+                          </div>
+                          <div className="content">
+                            <div className="wrap">
+                              <p className="name">{content.course_title}</p>
+                              {/* <p
+                                className="status"
+                                style={{
+                                  backgroundColor: statusColor,
+                                }}
+                              >
+                                {status}
+                              </p> */}
+                            </div>
+                            <p className="text">
+                              Amet eget tellus condimentum molestie scelerisque a aliquam pretium.
+                              Ipsum id odio a duis. Porttitor auctor volutpat quis ullamcorper est.
+                            </p>
+                            <div>
+                              <p className="date">Uploaded {content.timestamp.slice(0,10)}</p>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+                      </>
                       )
                     })}
-                    {/* <LibraryCard status="draft" />
-                    <LibraryCard status="Upcomming" />
-                    <LibraryCard status="Completed" />
-                    <LibraryCard status="draft" />
-                    <LibraryCard status="Upcomming" />
-                    <LibraryCard status="Completed" />
-                    <LibraryCard status="draft" /> */}
                   </div>
                 </div>
               </div>
@@ -83,7 +127,7 @@ const ContentLibrary = ({
                   You have not added any content. Click the <br /> button below to
                   create one.
                 </p>
-                <Link to='/create/upload'><button className="content-button">Create content</button></Link>
+                <Link to='/home/create/upload'><button className="content-button">Create content</button></Link>
               </div>
             </div>
           </section>

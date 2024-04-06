@@ -15,7 +15,7 @@ const Create = () => {
                 <img src={typeicon}></img>
                 <h4>Upload Document</h4>
                 <p>Upload lecture materials as WORD,<br></br> PDF, Video or Audio format</p>
-                <Link to="/create/upload">
+                <Link to="/home/create/upload">
                     <button>Upload Document</button>
                 </Link>
             </div>

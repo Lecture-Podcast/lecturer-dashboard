@@ -1,0 +1,192 @@
+.login-con {
+  display: flex;
+  width: 100%;
+}
+
+.login-con button {
+  cursor: pointer;
+}
+
+.login-con .left-background-con {
+  background-image: url("../../../Assets/images/Rectangle.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 60%;
+  position: relative;
+}
+.login-con .left-background-con p {
+  color: white;
+  font-size: 46px;
+  font-family: "General Sans";
+  font-weight: 600;
+  line-height: 62px;
+  /* wordWrap: 'break-word' */
+  position: absolute;
+  left: 4vw;
+  bottom: 4vh;
+}
+
+.login-con .left-background-pic {
+  position: absolute;
+  left: 4vw;
+  top: 8vh;
+}
+
+.login-con form input {
+  padding: 1vh 1vw;
+  outline: none;
+  border: none;
+  width: 100%;
+  color: rgba(1, 0, 58, 0.41);
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}
+
+.login-con form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3vh 0;
+}
+
+.login-con form .login-btn {
+  background-color: rgba(255, 165, 0, 0.6);
+  color: white;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 600;
+  border: none;
+  padding: 1vh 2vw;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2vw;
+  /* wordWrap: 'break-word' */
+}
+
+.login-con .form-con {
+  /* width: 40%; */
+  height: 100vh;
+}
+
+.login-con .form-con h1 {
+  color: #1a2129;
+  font-size: 33px;
+  font-family: "General Sans";
+  font-weight: 600;
+  margin: 1vh 0;
+  /* wordWrap: 'break-word' */
+}
+.login-con .form-con h1 span:first-child {
+  color: #ffa500;
+}
+
+.login-con .form-con h1 span:nth-child(2) {
+  color: #3331a3;
+}
+
+.login-con form .form-header {
+  color: #5e6b74;
+  font-size: 18px;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 28px;
+  margin-bottom: 2vh;
+  /* wordWrap: 'break-word' */
+}
+.login-con form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 3vw;
+  padding: 3vh 0;
+}
+
+.login-con form .password-eye {
+  display: flex;
+  align-items: center;
+}
+
+.login-con form .check-p-con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #5e6b74;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 28px;
+  /* wordWrap: 'break-word' */
+}
+
+.login-con form .check-p-con div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0 3px;
+  /* wordWrap: 'break-word' */
+}
+
+.login-con form .check-p-con .forget-para {
+  color: #ffa500;
+}
+
+.login-con form .google-btn {
+  display: flex;
+  align-items: center;
+  padding: 1vh 2vw;
+  gap: 0 1vw;
+  border: 1px solid rgba(151, 151, 151, 0.3);
+  margin: 0 auto;
+}
+.login-con form .google-btn button {
+  color: #5e6b74;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 500;
+  background-color: white;
+  border: none;
+}
+
+.login-con form .login-link-headset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-con form .login-link-headset div:first-child {
+  color: rgba(1, 0, 58, 0.41);
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}
+.login-con form .login-link-headset a {
+  color: #ffa500;
+  font-size: 15px;
+  font-family: "Poppins";
+  font-weight: 600;
+  text-decoration: underline;
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}
+
+.login-con form .login-link-headset div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 0 1vw;
+}
+.login-con form .login-link-headset div:nth-child(2) p {
+  color: #3331a3;
+  font-size: 12px;
+  font-family: "Poppins";
+  font-weight: 400;
+  text-decoration: underline;
+  line-height: 32px;
+  /* wordWrap: 'break-word' */
+}

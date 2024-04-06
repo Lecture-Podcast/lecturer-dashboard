@@ -24,7 +24,7 @@ const Sidebar = () => {
       <div className="sidebar-nav">
         <nav>
           <ul>
-            <Link to="/">
+            <Link to="/home">
               <li
                 className={value === 0 ? "active" : ""}
                 onClick={() => {
@@ -37,7 +37,7 @@ const Sidebar = () => {
                 Dashboard
               </li>
             </Link>
-            <Link to='/create-library'>
+            <Link to='/home/create-library'>
               <li 
                 className={value === 1 ? "active" : ""}
                 onClick={() => {
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 Content Library
               </li>
             </Link>
-            <Link to="/create">
+            <Link to="/home/create">
               <li
                 className={value === 2 ? "active" : ""}
                 onClick={() => {
@@ -74,7 +74,7 @@ const Sidebar = () => {
               </span>
               Messages
             </li>
-            <Link to="/settings">
+            <Link to="/home/settings">
               <li
                 className={value === 4 ? "active" : ""}
                 onClick={() => {

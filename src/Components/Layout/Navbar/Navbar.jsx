@@ -4,6 +4,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { TfiBell } from "react-icons/tfi";
 import { FaCheck, FaChevronDown } from "react-icons/fa";
 import profile from "../../../Assets/images/profile.jpeg"
+import nopro from "../../../Assets/images/nopro.jpg"
 import { connect } from 'react-redux';
 import { fetchprofile } from '../../../Redux/Profile/ProfileAction';
 import  Skeleton, {SkeletonTheme}  from 'react-loading-skeleton'
@@ -26,10 +27,12 @@ const Navbar = ({profiledata, loading, error, fetchprofile}) => {
                 </div>
                 <div className="profile-details">
                     <div className="dp">
-                        <img src={profile}></img>
+
+                        <img src={profiledata?.lecturer?.profile_image == null ? nopro :profiledata.lecturer.profile_image }></img>
                         <div className="tick">
                             <FaCheck/>
                         </div>
+                        
                     </div>
                     <div className="profile-name">
                         {loading ? (

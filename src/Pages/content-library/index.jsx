@@ -93,8 +93,7 @@ const ContentLibrary = ({
                               </p> */}
                             </div>
                             <p className="text">
-                              Amet eget tellus condimentum molestie scelerisque a aliquam pretium.
-                              Ipsum id odio a duis. Porttitor auctor volutpat quis ullamcorper est.
+                              {content.course_code}
                             </p>
                             <div>
                               <p className="date">Uploaded {content.timestamp.slice(0,10)}</p>

@@ -6,7 +6,7 @@ const Inputfield = ({label, type, placeholder}) => {
             <label>{label}</label>
             <input
                 type={type}
-                placeholder={placeholder}
+                defaultValue={placeholder}
             ></input>
         </div>
     );

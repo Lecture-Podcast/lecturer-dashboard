@@ -1,4 +1,5 @@
-import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS } from "./SettingsType"
+import axios from "axios"
+import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PROFILE_IMAGE_FALIURE, CHANGE_PROFILE_IMAGE_REQUEST, CHANGE_PROFILE_IMAGE_SUCCESS } from "./SettingsType"
 
 //For video content
 export const changepasswordrequest = ()=>{
@@ -68,7 +69,7 @@ export const changePassword = (poststate, history, setErrorHandler) => {
 }
 export const changeprofileimage = (poststate, history, setErrorHandler) => {
     return async (dispatch) => {
-        dispatch(audiorequest())
+        dispatch(changeprofileimagerequest())
 
         try{
             let datas = JSON.parse(localStorage.getItem("auth"));
@@ -77,16 +78,16 @@ export const changeprofileimage = (poststate, history, setErrorHandler) => {
                 authorization: `Bearer ${datas.token}`,
             };
             console.log("THIS IS POSTSTATE", poststate)
-            const response = await axios.post(`${baseURl}student/settings/change-profile-image`, poststate,{ headers: headers })
+            const response = await axios.post(`${baseURl}/lecturer/settings/change-profile-image`, poststate,{ headers: headers })
             const data = response
-            dispatch(audiosuccess(data))
+            dispatch(changeprofileimagesuccess(data))
             if(response.status===201){
                 history();
             }
         }
         catch(error){
             const errormsg = error.message
-            dispatch(audiofaliure(errormsg))
+            dispatch(changeprofileimagefaliure(errormsg))
             setErrorHandler({ hasError: true, message: error?.response?.data?.message });
         }
     }

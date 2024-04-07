@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import { profileReducer } from './Profile/ProfileReducer';
 import { audioReducer, fetchcontentReducer, fileReducer, videoReducer } from './Content/ContentReducer';
 import usersSlice from './usersAuth/usersSlice';
+import { changeprofileimageReducer } from './Settings/SettingReducer';
 
 
 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     createAudio: audioReducer,
     createFile: fileReducer,
     createVideo: videoReducer,
-    auth: usersSlice
+    auth: usersSlice,
+    changeprofileimage: changeprofileimageReducer,
 })
 
 export default rootReducer;

@@ -63,7 +63,7 @@ const Sidebar = () => {
                 Create
               </li>
             </Link>
-            <li
+            {/* <li
               className={value === 3 ? "active" : ""}
               onClick={() => {
                 handleChange(3);
@@ -73,7 +73,7 @@ const Sidebar = () => {
                 <TbMessage />
               </span>
               Messages
-            </li>
+            </li> */}
             <Link to="/home/settings">
               <li
                 className={value === 4 ? "active" : ""}
@@ -87,7 +87,7 @@ const Sidebar = () => {
                 Settings
               </li>
             </Link>
-            <li
+            {/* <li
               className={value === 5 ? "active" : ""}
               onClick={() => {
                 handleChange(5);
@@ -97,8 +97,8 @@ const Sidebar = () => {
                 <TbBriefcase />
               </span>
               Supports & Help
-            </li>
-            <li
+            </li> */}
+            {/* <li
               className={value === 6 ? "active" : ""}
               onClick={() => {
                 handleChange(6);
@@ -108,7 +108,7 @@ const Sidebar = () => {
                 <LiaMoneyBillWaveSolid />
               </span>
               Premimum
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className="log-out">

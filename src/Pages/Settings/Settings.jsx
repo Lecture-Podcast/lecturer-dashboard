@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Settings.css";
 import profile from '../../Assets/images/profile.jpeg'
+import nopro from "../../Assets/images/nopro.jpg"
 import Inputfield from "../../Components/Fields/Inputfield";
 import TextArea from "../../Components/Fields/TextArea";
 import {FaCheck, FaTimes} from 'react-icons/fa'
 import { RadioGroup } from "@mui/material";
-const Settings = () => {
+import { fetchprofile } from "../../Redux/Profile/ProfileAction";
+import { connect } from "react-redux";
+import { changeprofileimage } from "../../Redux/Settings/SettingsAction";
+import { useNavigate } from "react-router-dom";
+const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage, changeprofileloading}) => {
+    const history = useNavigate();
     const radius = 70
     const dashArray = radius * Math.PI * 2
     const dashOffset = dashArray - (dashArray * 70) / 100
+    const inputRef = useRef();
+    const [selectedfile, setselectedfile] = useState(null);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setselectedfile(event.target.files[0])
+        const formData = new FormData();
+        formData.append('profile_image', event.target.files[0]);
+        try{ 
+            await changeprofileimage(formData, ()=>{ 
+            //    setModal(false)
+            //    setUpload(true)
+                history.push(window.location.pathname);
+            }, ()=>{ 
+                
+            });
+        }catch(error){
+        
+        }
+        // // let data = event.target.files[0]
+        // setFiles([...files, event.target.files[0]])
+        // setModal(true)
+    };
     return ( 
         <div className="settings">
             <h4 className="page-title">Settings</h4>
@@ -16,7 +44,7 @@ const Settings = () => {
                 <div className="setting-nav active-nav">
                     <p>My Profile</p>
                 </div>
-                <div className="setting-nav">
+                {/* <div className="setting-nav">
                     <p>Account Information</p>
                 </div>
                 <div className="setting-nav">
@@ -30,7 +58,7 @@ const Settings = () => {
                 </div>
                 <div className="setting-nav">
                     <p>Help and Support</p>
-                </div>
+                </div> */}
             </div>
             <div className="settings-body">
                 <div className="settings-body-inner">
@@ -40,9 +68,14 @@ const Settings = () => {
                         </div>
                         <div className="personal-body">
                             <div className="profile-image">
-                                <img src={profile}></img>
+                                <img src={profiledata?.lecturer?.profile_image == null ? nopro : profiledata.lecturer.profile_image }></img>
                                 <div className="upload-image">
-                                    <button>Upload new Photo</button>
+                                <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
+                                    <button
+                                        onClick={(e) => {inputRef.current.click(); e.preventDefault();}}
+                                    >
+                                        { changeprofileloading? "Uploading...." : "Upload new Photo"}
+                                    </button>
                                     <p>At least 800x800 px recommended.<br></br>Must be PNG or JPG file </p>
                                 </div>
                             </div>
@@ -56,28 +89,28 @@ const Settings = () => {
                                         />
                                         <Inputfield
                                          type="text"
-                                         placeholder="David Jones Adeleke"
+                                         placeholder={profiledata?.lecturer?.fullname}
                                          label="Full name"
                                         />
                                     </div>
                                     <div className="form-2">
                                         <Inputfield
                                             type="email"
-                                            placeholder="davidjones@gmail.com"
+                                            placeholder={profiledata?.lecturer?.email}
                                             label="Email Address"
                                         />
                                     </div>
-                                    <div className="form-2">
+                                    {/* <div className="form-2">
                                         <Inputfield
                                             type="text"
                                             placeholder="Plot 8 Royal Palm Dr, Ikoyi, Lagos State"
                                             label="Residential Address"
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className="form-2">
                                         <Inputfield
                                             type="text"
-                                            placeholder="903 846 8429"
+                                            placeholder={profiledata?.lecturer?.phone_number}
                                             label="Phone number"
                                         />
                                     </div>
@@ -88,7 +121,7 @@ const Settings = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="personal-information complete-profile">
+                    {/* <div className="personal-information complete-profile">
                         <div className="quick-head">
                             <p className='quick-head-text'>Complete Your Profile</p>
                         </div>
@@ -164,7 +197,7 @@ const Settings = () => {
                                 <p>Bank Details</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="setting-body-inner-2">
                 <div className="personal-information professional-information">
@@ -207,5 +240,24 @@ const Settings = () => {
         </div>
     );
 }
- 
-export default Settings;
+
+const mapStoreToProps = (state) => {
+    console.log(state)
+    return {
+        loading: state.profile.loading,
+        error: state.profile.error,
+        profiledata: state.profile.data,
+        changeprofileloading: state.changeprofileimage.loading
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchprofile: () => dispatch(fetchprofile()),
+        changeprofileimage: (nameState, history, setErrorHandler) => {
+            dispatch(changeprofileimage(nameState, history, setErrorHandler));
+        },
+    };
+};
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Settings);

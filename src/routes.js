@@ -9,6 +9,7 @@ import Content from "./Pages/create-content/crearte-content";
 import ContentLibrary from "./Pages/content-library";
 import Login from "./Pages/Authentication/Login";
 import SignUp from "./Pages/Authentication/SignUp";
+import Verify from "./Pages/Authentication/Verify";
 
 export default function Router() {
   const routes = useRoutes([
@@ -19,6 +20,10 @@ export default function Router() {
     {
       path: '/signup',
       element: <SignUp/>, // Renders LoginPage component when the root path is accessed
+    },
+    {
+      path: '/verify',
+      element: <Verify/>, // Renders LoginPage component when the root path is accessed
     },
     {
       path: "/home",

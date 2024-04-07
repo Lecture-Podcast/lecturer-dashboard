@@ -1,0 +1,34 @@
+.verify{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.verify-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+
+}
+.verify-content p{
+    font-family: "Poppins";
+    font-size: 33px;
+    font-weight: 600;
+    line-height: 44.55px;
+    text-align: center;
+}
+.verify-content button{
+    margin-top: 15px;
+    width: 100%;
+    padding: 2rem;
+    font-family: "Poppins";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 15px;
+    color: white;
+    text-align: center;
+    background-color: #FFA500;
+    border-radius: 8px;
+    border: none;
+}

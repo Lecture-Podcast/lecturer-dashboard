@@ -95,6 +95,7 @@
     text-decoration: none;
 }
 .submit-buttons{
+    width: 100%;
     margin-top: 10px;
     background-color: #FFA500;
     border-radius: 7px;

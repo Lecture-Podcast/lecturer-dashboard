@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Upload.css';
-import { FaRegFilePdf, FaUpload } from "react-icons/fa";
+import { FaRegFilePdf, FaTimes, FaUpload } from "react-icons/fa";
 import { connect } from "react-redux";
 import loader from '../../Assets/animation/loading.json'
 import { createAudio, createFile, createvideo } from "../../Redux/Content/CotentAction";
 import LottieAnimation from "../../Lotties";
 import Uploadmodal from "../../Components/Modals/UploadModal";
+import { wait } from "@testing-library/user-event/dist/utils";
 const Uplaod = ({
         createAudio, 
         createVideo, 
@@ -23,12 +24,14 @@ const Uplaod = ({
     const [audio, setAudio] = useState(null);
     const [content_category, setcontent_category] = useState('');
     const [course_title, setcourse_title] = useState('');
+    const [description, setDescription] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [kbInput, setKbInput] = useState('');
     const [mbOutput, setMbOutput] = useState('');
     const [files, setFiles] = useState([]);
     const [modal, setModal] = useState(false)
     const [selectedfile, setselectedfile] = useState(null);
+    const [dropedFile, setdropedfile] = useState(null)
     const [upload, setUpload] = useState(false)
     const [success, setSuccess] = useState(false);
     const inputRef = useRef();
@@ -38,28 +41,39 @@ const Uplaod = ({
     const toggleuploadmodal = ()=>{
         setUpload(false)
     }
-    console.log(audios)
-    const handleSubmit = async (event) => {
+    const togglemodal = ()=>{
+        setModal(!modal)
+    }
+    const handleTitleChange = (event) => {
+        setcourse_title(event.target.value);
+        console.log(course_title)
+    };
+
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value);
+        console.log(description)
+    };
+    const handleSubmit2 = async(event)=>{
         event.preventDefault();
-        // let data = event.target.files[0]
-        setFiles([...files, event.target.files[0]])
         const formData = new FormData();
-        if(event.target.files[0].type.split('/')[0]=="audio"){
-            formData.append('audio', event.target.files[0]);
+        if(dropedFile?.type?.split('/')[0]=="audio" || selectedfile?.type?.split('/')[0]=="audio"){
+            formData.append('audio', dropedFile||selectedfile);
         }
-        if(event.target.files[0].type.split('/')[0]=="video"){
-            formData.append('video', event.target.files[0]);
+        if(dropedFile?.type.split('/')[0]=="video" || selectedfile?.type?.split('/')[0]=="video"){
+            formData.append('video', dropedFile||selectedfile);
         }
-        if(event.target.files[0].type.split('/')[0]=="application"){
-            formData.append('document', event.target.files[0]);
+        if(dropedFile?.type?.split('/')[0]=="application" || selectedfile?.type?.split('/')[0]=="application"){
+            formData.append('document', dropedFile||selectedfile);
         }
         formData.append('content_category', "science");
-        formData.append('course_title', "geography");
+        formData.append('course_title', course_title);
+        formData.append('course_code', description);
         formData.append('thumbnail', "");
-        event.preventDefault();
-        if(event.target.files[0].type.split('/')[0]=="audio"){
+        console.log('formdaa', formData)
+        if(dropedFile?.type?.split('/')[0]=="audio" || selectedfile?.type?.split('/')[0]=="audio"){
             try{ 
                 await createAudio(formData, ()=>{ 
+                   setModal(false)
                    setUpload(true)
                 }, ()=>{ 
                     
@@ -68,10 +82,11 @@ const Uplaod = ({
             
             }
         }
-        if(event.target.files[0].type.split('/')[0]=="video"){
+        if(dropedFile?.type.split('/')[0]=="video" || selectedfile?.type?.split('/')[0]=="video"){
             try{ 
                 await createVideo(formData, ()=>{ 
-                   setUpload(true)
+                    setModal(false)
+                    setUpload(true)
                 }, ()=>{ 
                     
                 });
@@ -79,10 +94,11 @@ const Uplaod = ({
             
             }
         }
-        if(event.target.files[0].type.split('/')[0]=="application"){
+        if(dropedFile?.type?.split('/')[0]=="application" || selectedfile?.type?.split('/')[0]=="application"){
             try{ 
                 await createFile(formData, ()=>{ 
-                   setUpload(true)
+                    setModal(false)
+                    setUpload(true)
                 }, ()=>{ 
                     
                 });
@@ -90,60 +106,20 @@ const Uplaod = ({
             
             }
         }
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setselectedfile(event.target.files[0])
+        // let data = event.target.files[0]
+        setFiles([...files, event.target.files[0]])
+        setModal(true)
     };
     const handleDrop = async (event) => {
         event.preventDefault();
         let data = event.dataTransfer.files[0]
-        setFiles([...files, data])
-        const formData = new FormData();
-      
-        if(event.dataTransfer.files[0].type.split('/')[0]=="audio"){
-            formData.append('audio', event.dataTransfer.files[0]);
-        }
-        if(event.dataTransfer.files[0].type.split('/')[0]=="video"){
-            formData.append('video', event.dataTransfer.files[0]);
-        }
-        if(event.dataTransfer.files[0].type.split('/')[0]=="application"){
-            formData.append('document', event.dataTransfer.files[0]);
-        }
-        formData.append('content_category', "studies");
-        formData.append('course_title', "geography");
-        formData.append('thumbnail', "");
-        event.preventDefault();
-        if(event.dataTransfer.files[0].type.split('/')[0]=="audio"){
-            try{ 
-                await createAudio(formData, ()=>{ 
-                   
-                }, ()=>{ 
-                    
-                });
-            }catch(error){
-            
-            }
-        }
-        if(event.dataTransfer.files[0].type.split('/')[0]=="video"){
-            try{ 
-                await createVideo(formData, ()=>{ 
-                   
-                }, ()=>{ 
-                    
-                });
-            }catch(error){
-            
-            }
-        }
-        if(event.dataTransfer.files[0].type.split('/')[0]=="application"){
-            try{ 
-                await createFile(formData, ()=>{ 
-                   
-                }, ()=>{ 
-                    
-                });
-            }catch(error){
-            
-            }
-        }
-
+        setdropedfile(event.dataTransfer.files[0])
+        setFiles([...files, data])      
+        setModal(true)
     };
     useEffect(()=>{
         if(files.length !== 0){
@@ -248,33 +224,50 @@ const Uplaod = ({
                 {upload && (<Uploadmodal message={audios?.data?.message || video?.data?.message || file?.data?.message} togglemodal={toggleuploadmodal}/>)}
             </div>
             {modal && (
-                <div className="modal-background">
-                    <div className="modalss">
-                        <div className="onetime-modal">
-                            <form>
-                                <div className="inputfield">
-                                    <label>Content Title</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Content Title"
-                                    ></input>
-                                </div>
-                                <div className="content-form">
-                                    <div className="inputfield">
-                                        <label>Content Description</label>
-                                        <textarea
-                                            type="text"
-                                            placeholder="Content Description"
-                                        ></textarea>
-                                    </div>
-                                </div>
-                            </form>
-                            <div className="signup-buttons">
-                                <button class="submit-buttons">Submit</button>
-                            </div>
+                <>
+                    {(audioloading || videoloading || fileloading) ? (
+                        <div className="upload-loading">
+                            <LottieAnimation data={loader}/>
+                            <p className="upload-file">Uploading</p>
                         </div>
-                    </div>
-                </div>
+                    ) : (
+                        <div className="modal-background">
+                            <div className="modalss">
+                                <div className="onetime-modal">
+                                    <div className="modalClose" onClick={togglemodal}>
+                                        <FaTimes/>
+                                    </div>
+                                    <form onSubmit={handleSubmit2}>
+                                        <div className="inputfield">
+                                            <label>Content Title</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Content Title"
+                                                onChange={handleTitleChange}
+                                                onBlur={handleTitleChange}
+                                            ></input>
+                                        </div>
+                                        <div className="content-form">
+                                            <div className="inputfield">
+                                                <label>Content Description</label>
+                                                <textarea
+                                                    type="text"
+                                                    placeholder="Content Description"
+                                                    onChange={handleDescriptionChange}
+                                                    onBlur={handleDescriptionChange}
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                        <div className="signup-buttons">
+                                            <button class="submit-buttons">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {upload && (<Uploadmodal message={audios?.data?.message || video?.data?.message || file?.data?.message} togglemodal={toggleuploadmodal}/>)}
+                        </div>
+                    )}
+                </>
             )}
         </>
     );

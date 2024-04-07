@@ -38,6 +38,8 @@ export const signUp = (userDetailsPhone, history) => {
         localStorage.setItem("auth", JSON.stringify(data));
         history()
         swal("Good job!", "Sign up Successful!", "success");
+      }else{
+        swal(data.error.message)
       }
     };
   } else {
@@ -88,7 +90,9 @@ export const signUp = (userDetailsPhone, history) => {
         history()
         swal("Good job!", "Sign up Successful!", "success");
         
-      }
+      }else{
+        swal(data.error.message)
+      } 
     };
   }
 };
@@ -122,6 +126,8 @@ export function logIn(loginDetails, history) {
           localStorage.setItem("auth", JSON.stringify(data));
           history()
           swal("Good job!", "Log in Successful!", "success");
+        }else{
+          swal(data.error.message)
         }
       } else {
         const userData = {
@@ -149,7 +155,9 @@ export function logIn(loginDetails, history) {
           localStorage.setItem("auth", JSON.stringify(data));
           history()
           swal("Good job!", "Log in Successful!", "success");
-        }
+        }else{
+          swal(data.error.message)
+        } 
       }
     } catch (error) {
       swal(error.message);

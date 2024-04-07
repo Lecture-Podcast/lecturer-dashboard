@@ -22,6 +22,7 @@ import swal from "sweetalert";
 import "./css/signUp.css";
 
 import { signUp } from "../../Redux/usersAuth/usersAction";
+import VerifyEmail from "../../Components/Modals/verifyEmail";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function SignUp() {
 
   console.log(message);
   const [visible, setVisible] = useState(true);
-
+  const [modal, setModal] = useState(false);
   // const [email, setEmail] = useState("")
 
   const [userDetails, setUserDetails] = useState({
@@ -65,7 +66,7 @@ function SignUp() {
     setIsLoading(true);
     if (userDetails.password === userDetails.confirmPassword) {
       dispatch(signUp({ userDetails, phone },()=>{
-        history("/home")
+        setModal(true)
       })).then(() => {
         setIsLoading(false);
         if (message) {
@@ -78,7 +79,9 @@ function SignUp() {
       // setErrMessage(true)
     }
   }
-
+  const toggelModal =()=>{
+    setModal(!modal)
+  }
   // function removeErrMessage() {
   //   setErrMessage(false);
   // }
@@ -279,6 +282,7 @@ function SignUp() {
           </div>
         </div>
       </div>
+      {modal && (<VerifyEmail/>)}
     </div>
   );
 }

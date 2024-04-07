@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FcGoogle } from "react-icons/fc";
 
@@ -45,6 +45,21 @@ function Login() {
 
   // const [disableBtn, setIsDisableBtn] = useState(false)
 
+  useEffect(() => {
+
+    // It is the user's email we are getting back to the email input
+    const rememberUserEmail = JSON.parse(
+      localStorage.getItem("getUserEmail")
+    );
+
+    if (rememberUserEmail) {
+      setLoginDetails({...loginDetails, email: rememberUserEmail})
+
+      // The checked box and the p tag will not show in the frontend because the user has made the email be remembered.
+      setIsChecked(false);
+    }
+  }, []);
+
   function handleCheck(e) {
 
     const box = e.target.checked;
@@ -54,7 +69,16 @@ function Login() {
   function handleChange(e) {
     setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
   }
+  // function rememberMe() {
+  //   // What I did here is when the checked box is checked by the user and then log in, the user's email is stored in the localStorage and then gotten back in the useEffect. If not checked and then logged in, there will be nothing in the localStorage, which is the else part of the code.
 
+  //   //When it is time for the logOut function, remember to remove the localStorage so there won't be any user's email being store
+  //   if (isChecked) {
+  //     localStorage.setItem("getUserEmail", JSON.stringify(loginDetails.email));
+  //   } else {
+  //     return;
+  //   }
+  // }
   function submitLoginFtn(e) {
     e.preventDefault();
     setIsLoading(true);

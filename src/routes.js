@@ -22,7 +22,11 @@ export default function Router() {
       element: <SignUp/>, // Renders LoginPage component when the root path is accessed
     },
     {
-      path: '/verify',
+      path: '/lecturer/verify',
+      element: <Verify/>, // Renders LoginPage component when the root path is accessed
+    },
+    {
+      path: '/students/verify',
       element: <Verify/>, // Renders LoginPage component when the root path is accessed
     },
     {

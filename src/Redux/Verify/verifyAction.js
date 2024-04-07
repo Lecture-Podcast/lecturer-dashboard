@@ -24,11 +24,8 @@ const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1/auth";
 export const verifyaction = (token, history) => {
     return async (dispatch) => {
         dispatch(profilerequest())
-
-        let datas = JSON.parse(localStorage.getItem("auth"));
         const headers = {
             "Content-Type": "application/json",
-            authorization: `Bearer ${datas.token}`,
         };
         axios.get(`${baseURl}/lecturer/verify-email?token=${token}`, { headers: headers })
         .then( response => {

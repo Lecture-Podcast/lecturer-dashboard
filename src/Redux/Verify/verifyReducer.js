@@ -1,4 +1,4 @@
-import { VERIFY_REQUEST, VERIFY_SUCCESS, VERIFY_FALIURE } from "./ProfileTypes"
+import { VERIFY_REQUEST, VERIFY_SUCCESS, VERIFY_FALIURE } from "./verifyTypes"
 
 const initialState = {
     loading: false,

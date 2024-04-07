@@ -91,7 +91,7 @@ export const signUp = (userDetailsPhone, history) => {
         swal("Good job!", "Sign up Successful!", "success");
         
       }else{
-        swal(data.error.message)
+        swal(data?.error?.message)
       } 
     };
   }

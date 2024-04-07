@@ -3,9 +3,11 @@ import './css/Verify.css'
 import success from "../../Assets/animation/SUCCESS.json"
 import loader from "../../Assets/animation/loading.json"
 import LottieAnimation from '../../Lotties';
+import { Link, useNavigate } from "react-router-dom";
 import { verifyaction } from '../../Redux/Verify/verifyAction';
-const Verify = ({loading, error, verifyaction}) => {
 
+const Verify = ({loading, error, verifyaction}) => {
+    const history = useNavigate()
     const urlParams = new URLSearchParams(window.location.search);
     // Extract the token parameter from the URL
     const tokenFromUrl = urlParams.get('token');
@@ -13,7 +15,9 @@ const Verify = ({loading, error, verifyaction}) => {
     console.log(tokenFromUrl)
     const handleSubmit = (e) =>{
         e.preventDefault()
-        verifyaction(tokenFromUrl)
+        verifyaction(tokenFromUrl, ()=>{
+            history("/")
+        })
     }
     return ( 
         <div className="verify">
@@ -46,7 +50,7 @@ const mapStoreToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        verifyaction: (token) => dispatch(verifyaction(token)),
+        verifyaction: (token, history) => dispatch(verifyaction(token, history)),
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(Verify);

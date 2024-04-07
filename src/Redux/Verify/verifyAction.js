@@ -21,7 +21,7 @@ export const profilefaliure = (error)=>{
 }
 
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1/auth";
-export const verifyaction = (token) => {
+export const verifyaction = (token, history) => {
     return async (dispatch) => {
         dispatch(profilerequest())
 
@@ -33,6 +33,7 @@ export const verifyaction = (token) => {
         axios.get(`${baseURl}/lecturer/verify-email?token=${token}`, { headers: headers })
         .then( response => {
             const data = response.data
+            history()
             dispatch(profilesuccess(data))
         })
         .catch(error =>{

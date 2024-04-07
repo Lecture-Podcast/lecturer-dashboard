@@ -21,7 +21,7 @@ export const profilefaliure = (error)=>{
 }
 
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1/auth";
-export const verifyprofile = (token) => {
+export const verifyaction = (token) => {
     return async (dispatch) => {
         dispatch(profilerequest())
 

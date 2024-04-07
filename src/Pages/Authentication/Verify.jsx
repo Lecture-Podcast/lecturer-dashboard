@@ -5,6 +5,7 @@ import loader from "../../Assets/animation/loading.json"
 import LottieAnimation from '../../Lotties';
 import { Link, useNavigate } from "react-router-dom";
 import { verifyaction } from '../../Redux/Verify/verifyAction';
+import { connect } from 'react-redux';
 
 const Verify = ({loading, error, verifyaction}) => {
     const history = useNavigate()

@@ -18,7 +18,8 @@ import "./css/login.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../Redux/usersAuth/usersAction";
-
+import LottieAnimation from "../../Lotties";
+import loader from "../../Assets/animation/loading4.json";
 
 import swal from 'sweetalert';
 
@@ -151,7 +152,7 @@ function Login() {
             <label htmlFor="password"></label>
             <input
               id="password"
-              type={visible ? "text" : "password"}
+              type={visible ? "password" : "text"}
               placeholder="Password"
               onChange={handleChange}
               name="password"
@@ -176,7 +177,7 @@ function Login() {
               onChange={handleChange}>
               <option>Area of expertise</option>
               {/* <option value="lecturer">Lecturer</option> */}
-              <option value="student">Student</option>
+              {/* <option value="student">Student</option> */}
               <option value="lecturer">Lecturer</option>
             </select>
           </label>
@@ -195,9 +196,9 @@ function Login() {
             className="login-btn"
             style={style}>
             {isLoading ? (  
-              <span>
-                <AiOutlineLoading3Quarters className="loader" />
-              </span>
+              <div className="spinner-btn">
+                  <LottieAnimation data={loader}/>
+              </div>
             ): (
               <span>Login</span>
             )}

@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
-
+import loader from "../../Assets/animation/loading4.json";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FaEyeSlash } from "react-icons/fa";
@@ -23,6 +23,7 @@ import "./css/signUp.css";
 
 import { signUp } from "../../Redux/usersAuth/usersAction";
 import VerifyEmail from "../../Components/Modals/verifyEmail";
+import LottieAnimation from "../../Lotties";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function SignUp() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(message);
+
   const [visible, setVisible] = useState(true);
   const [modal, setModal] = useState(false);
   // const [email, setEmail] = useState("")
@@ -57,6 +58,17 @@ function SignUp() {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   }
 
+  const handlePhone = (e)=>{
+    const value = e.target.value
+    let formattedNumber = value.trim().replace(/\D/g, ''); // Remove non-numeric characters
+
+    // Check if the first digit is '0' and remove it, then prepend '+234'
+    if (formattedNumber.charAt(0) === '0') {
+      formattedNumber = '+234' + formattedNumber.slice(1);
+    }
+    setPhone(formattedNumber)
+
+  }
   function handleCheck() {
     setIsChecked(!isChecked);
   }
@@ -65,8 +77,10 @@ function SignUp() {
     e.preventDefault();
     setIsLoading(true);
     if (userDetails.password === userDetails.confirmPassword) {
-      dispatch(signUp({ userDetails, phone },()=>{
+      dispatch(signUp({userDetails, phone},()=>{
         setModal(true)
+        setIsLoading(false);
+        console.log("i am here ooooo")
       })).then(() => {
         setIsLoading(false);
         if (message) {
@@ -145,7 +159,19 @@ function SignUp() {
               required
             />
           </label>
-          <div className="phone-num">
+          <label htmlFor="phone">
+            <input
+              type="text"
+              id="phone"
+              placeholder="Phone Number"
+              name="Phone Number"
+              onChange={handlePhone}
+              onBlur={handlePhone}
+              maxLength={11}
+              required
+            />
+          </label>
+          {/* <div className="phone-num">
             <label htmlFor="number">
               <PhoneInput
                 className="number"
@@ -156,12 +182,8 @@ function SignUp() {
                   required: true
                 }}
               />
-              {/* <div>
-                <img src={nigNumber} alt="country-flag-number" />
-              </div>
-              <input type="number" id="number" /> */}
             </label>
-          </div>
+          </div> */}
           <label htmlFor="areaOfExpertise">
             <select
               id="areaOfExpertise"
@@ -170,7 +192,7 @@ function SignUp() {
               onChange={handleChange}>
               <option>Area of expertise</option>
               {/* <option value="lecturer">Lecturer</option> */}
-              <option value="student">Student</option>
+              {/* <option value="student">Student</option> */}
               <option value="Lecturer">Lecturer</option>
             </select>
           </label>
@@ -206,7 +228,7 @@ function SignUp() {
             <label htmlFor="password"></label>
             <input
               id="password"
-              type={visible ? "text" : "password"}
+              type={visible ? "password" : "text"}
               placeholder="Password"
               name="password"
               value={userDetails.password}
@@ -228,7 +250,7 @@ function SignUp() {
             <label htmlFor="confirm-password"></label>
             <input
               id="confirm-password"
-              type={confirmPassVisible ? "text" : "password"}
+              type={confirmPassVisible ? "password" : "text"}
               placeholder="Confirm Password"
               name="confirmPassword"
               value={userDetails.confirmPassword}
@@ -256,9 +278,9 @@ function SignUp() {
             disabled={!isChecked}
             style={style}>
             {isLoading ? (  
-              <span>
-                <AiOutlineLoading3Quarters className="loader" />
-              </span>
+              <div className="spinner-btn">
+                  <LottieAnimation data={loader}/>
+              </div>
             ): (
               <span>Sign up</span>
             )}

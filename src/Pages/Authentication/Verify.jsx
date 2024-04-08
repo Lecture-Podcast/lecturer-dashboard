@@ -1,9 +1,9 @@
 import React from 'react';
 import './css/Verify.css'
 import success from "../../Assets/animation/SUCCESS.json"
-import loader from "../../Assets/animation/loading.json"
+import loader from "../../Assets/animation/loading4.json"
 import LottieAnimation from '../../Lotties';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useHistory  } from "react-router-dom";
 import { verifyaction } from '../../Redux/Verify/verifyAction';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ const Verify = ({loading, error, verifyaction}) => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         verifyaction(tokenFromUrl, ()=>{
-            history("/")
+            history.push("https://lecture-podcast-dahboard.netlify.app/")
         })
     }
     return ( 

@@ -82,7 +82,7 @@ export const signUp = (userDetailsPhone, history) => {
       const data = await res.json();
 
       dispatch({ type: "user/signup", payload: data });
-      if (data.token) {
+      if (data.lecturer) {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${data.token}`;

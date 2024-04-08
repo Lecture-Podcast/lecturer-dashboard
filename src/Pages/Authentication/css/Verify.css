@@ -11,6 +11,9 @@
     width: 40%;
 
 }
+.spinner-btn{
+    width: 15%;
+}
 .verify-content p{
     font-family: "Poppins";
     font-size: 33px;

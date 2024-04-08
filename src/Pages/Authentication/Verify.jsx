@@ -17,7 +17,7 @@ const Verify = ({loading, error, verifyaction}) => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         verifyaction(tokenFromUrl, ()=>{
-            history("https://lecture-podcast-dahboard.netlify.app/")
+            window.location.href = "https://lecture-podcast-dahboard.netlify.app/";
         })
     }
     return ( 

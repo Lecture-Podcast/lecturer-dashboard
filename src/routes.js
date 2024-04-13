@@ -26,7 +26,7 @@ export default function Router() {
       element: <Verify/>, // Renders LoginPage component when the root path is accessed
     },
     {
-      path: '/students/verify',
+      path: '/student/verify',
       element: <Verify/>, // Renders LoginPage component when the root path is accessed
     },
     {

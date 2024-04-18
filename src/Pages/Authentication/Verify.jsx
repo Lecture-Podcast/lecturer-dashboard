@@ -18,6 +18,11 @@ const Verify = ({ userType, loading, error, verifyaction }) => {
     verifyaction(tokenFromUrl, userType, history);
   }, [userType]); // Trigger the effect whenever userType changes
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history("/");
+  };
+
   return (
     <div className="verify">
       <div className="verify-content">
@@ -27,7 +32,7 @@ const Verify = ({ userType, loading, error, verifyaction }) => {
         {error && <p className="error-message">{error}</p>}
         {/* <p>Your account has been verified</p> */}
         {!error && <p>Your account has been verified</p>}
-        <button disabled={loading}>
+        <button onClick={handleSubmit} disabled={loading}>
           {loading ? (
             <div className="spinner-btn">
               <LottieAnimation data={loader} />

@@ -14,20 +14,20 @@ import Verify from "./Pages/Authentication/Verify";
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/',
-      element: <Login/>, // Renders LoginPage component when the root path is accessed
+      path: "/",
+      element: <Login />, // Renders LoginPage component when the root path is accessed
     },
     {
-      path: '/signup',
-      element: <SignUp/>, // Renders LoginPage component when the root path is accessed
+      path: "/signup",
+      element: <SignUp />, // Renders LoginPage component when the root path is accessed
     },
     {
-      path: '/lecturer/verify',
-      element: <Verify/>, // Renders LoginPage component when the root path is accessed
+      path: "/lecturer/verify",
+      element: <Verify userType="lecturer" />, // Renders LoginPage component when the root path is accessed
     },
     {
-      path: '/student/verify',
-      element: <Verify/>, // Renders LoginPage component when the root path is accessed
+      path: "/student/verify",
+      element: <Verify userType="student" />, // Renders LoginPage component when the root path is accessed
     },
     {
       path: "/home",

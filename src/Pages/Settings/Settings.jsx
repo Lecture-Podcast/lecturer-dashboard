@@ -26,7 +26,7 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
             await changeprofileimage(formData, ()=>{ 
             //    setModal(false)
             //    setUpload(true)
-                history.push(window.location.pathname);
+                history(window.location.pathname);
             }, ()=>{ 
                 
             });
@@ -68,7 +68,7 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
                         </div>
                         <div className="personal-body">
                             <div className="profile-image">
-                                <img src={profiledata?.lecturer?.profile_image == null ? nopro : profiledata.lecturer.profile_image }></img>
+                                <img src={profiledata?.profile_image == null ? nopro : profiledata.profile_image }></img>
                                 <div className="upload-image">
                                 <input type="file" name="file" ref={inputRef} onChange={handleSubmit} hidden></input>
                                     <button
@@ -89,14 +89,14 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
                                         />
                                         <Inputfield
                                          type="text"
-                                         placeholder={profiledata?.lecturer?.fullname}
+                                         placeholder={profiledata?.fullname}
                                          label="Full name"
                                         />
                                     </div>
                                     <div className="form-2">
                                         <Inputfield
                                             type="email"
-                                            placeholder={profiledata?.lecturer?.email}
+                                            placeholder={profiledata?.email}
                                             label="Email Address"
                                         />
                                     </div>
@@ -110,7 +110,7 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
                                     <div className="form-2">
                                         <Inputfield
                                             type="text"
-                                            placeholder={profiledata?.lecturer?.phone_number}
+                                            placeholder={profiledata?.phone_number}
                                             label="Phone number"
                                         />
                                     </div>

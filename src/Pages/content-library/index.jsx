@@ -59,7 +59,7 @@ const ContentLibrary = ({
                   </div>
 
                   <div className="cl-card-container">
-                    {data?.contents?.map(content => {
+                    {data?.map(content => {
                       let anime
                       if (content.content_type === "Audio") {
                         anime = audio;

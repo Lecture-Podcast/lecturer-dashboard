@@ -32,8 +32,9 @@ export const fetchprofile = ( ) => {
         };
         axios.get(`${baseURl}/lecturer-profile`, { headers: headers })
         .then( response => {
-            const data = response.data
+            const data = response.data.data
             dispatch(profilesuccess(data))
+            console.log(data)
         })
         .catch(error =>{
             const errorMsg = error.message

@@ -41,7 +41,7 @@ const ContentLibrary = ({
       </div>
     ):(
       <>
-        {(data?.contents?.length !== 0) ? (
+        {(data?.length !== 0) ? (
           <section>
               <div>
                 <h1>Content Library</h1>

@@ -28,7 +28,7 @@ const Navbar = ({profiledata, loading, error, fetchprofile}) => {
                 <div className="profile-details">
                     <div className="dp">
 
-                        <img src={profiledata?.lecturer?.profile_image == null ? nopro :profiledata.lecturer.profile_image }></img>
+                        <img src={profiledata?.profile_image == null ? nopro :profiledata.profile_image }></img>
                         <div className="tick">
                             <FaCheck/>
                         </div>
@@ -42,8 +42,8 @@ const Navbar = ({profiledata, loading, error, fetchprofile}) => {
                             
                         ): (
                             <>
-                            <h4>{profiledata?.lecturer?.fullname}</h4>
-                            <p>{profiledata?.lecturer?.email}</p>
+                            <h4>{profiledata?.fullname}</h4>
+                            <p>{profiledata?.email}</p>
                             </>
                         )}
                 

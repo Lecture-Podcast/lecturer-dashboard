@@ -110,7 +110,7 @@ export const fetchcontent = ( ) => {
         };
         axios.get(`${baseURl}/lecturer/content/all-content`, { headers: headers })
         .then( response => {
-            const data = response.data
+            const data = response.data.data
             console.log(data)
             dispatch(fetchcontentsuccess(data))
         })
@@ -132,7 +132,7 @@ export const fetchsinglecontent = ({id}) => {
         };
         axios.get(`${baseURl}/lecturer/content/single-content?id=${id}`, { headers: headers })
         .then( response => {
-            const data = response.data
+            const data = response.data.data
             console.log(data)
             dispatch(fetchsinglecontentsuccess(data))
         })

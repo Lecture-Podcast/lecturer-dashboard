@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../../Assets/images/logo.png";
 import "./Sidebar.css";
 import { HiOutlineChartPie } from "react-icons/hi2";
@@ -9,13 +9,30 @@ import { FiSettings } from "react-icons/fi";
 import { TbBriefcase } from "react-icons/tb";
 import { PiSignOutLight } from "react-icons/pi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import { useState } from 'react';
 const Sidebar = () => {
+  const location = useLocation();
+  const [timeoutId, setTimeoutId] = React.useState(null);
   const [value, setValue] = React.useState(0);
   const handleChange = (event) => {
     setValue(event);
   };
+  const handlelogout =()=>{
+   
+  }
+
+useEffect(() => {
+    const id = setTimeout(() => {
+        handlelogout();
+    }, 900000);
+
+    setTimeoutId(id);
+
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, []);
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
@@ -26,7 +43,7 @@ const Sidebar = () => {
           <ul>
             <Link to="/home">
               <li
-                className={value === 0 ? "active" : ""}
+                className={location.pathname === "/home" ? "active" : ""}
                 onClick={() => {
                   handleChange(0);
                 }}
@@ -39,7 +56,7 @@ const Sidebar = () => {
             </Link>
             <Link to='/home/create-library'>
               <li 
-                className={value === 1 ? "active" : ""}
+                className={location.pathname === "/home/create-library" === 1 ? "active" : ""}
                 onClick={() => {
                   handleChange(1);
                 }}
@@ -52,7 +69,7 @@ const Sidebar = () => {
             </Link>
             <Link to="/home/create">
               <li
-                className={value === 2 ? "active" : ""}
+                className={location.pathname === "/home/create" ? "active" : ""}
                 onClick={() => {
                   handleChange(2);
                 }}
@@ -76,7 +93,7 @@ const Sidebar = () => {
             </li> */}
             <Link to="/home/settings">
               <li
-                className={value === 4 ? "active" : ""}
+                className={location.pathname === "/home/settings" ? "active" : ""}
                 onClick={() => {
                   handleChange(4);
                 }}

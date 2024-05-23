@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import typeicon from '../../Assets/images/Empty State.png'
 import "./Create.css"
 import { Link } from "react-router-dom";
+import Comingmodal from "../../Components/Modals/Comingmodal";
 const Create = () => {
+    const [modal, setmodal]= useState(false);
+    const toggleModal = ()=>{
+        setmodal(!modal)
+    }
     return ( 
         <div className="create">
             <div className="create-types">
                 <img src={typeicon}></img>
                 <h4>Schedule a class</h4>
                 <p>Instantly schedule and class and get <br></br>notified few.minutes to the time</p>
-                <button>Schedule a Class</button>
+                <button onClick={toggleModal}>Schedule a Class</button>
             </div>
             <div className="create-types">
                 <img src={typeicon}></img>
@@ -19,6 +24,7 @@ const Create = () => {
                     <button>Upload Document</button>
                 </Link>
             </div>
+            {modal && (<Comingmodal togglemodal={toggleModal}/>)}
         </div>
     );
 }

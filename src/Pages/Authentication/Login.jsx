@@ -13,7 +13,7 @@ import { FaRegEye } from "react-icons/fa";
 import LP from "../../Assets/images/logo.png";
 import headset from "../../Assets/images/headset.png";
 // import Misc from "../img/Misc icon.png";
-
+import logo from "../../Assets/images/logo2.png"
 import "./css/login.css";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,6 @@ function Login() {
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
-    areaOfExpertise: ""
   });
 
   const [isChecked, setIsChecked] = useState(false);
@@ -104,43 +103,31 @@ function Login() {
   };
 
   return (
-    <div className="login-con sign-up">
-      <div className="left-background-con">
+    <div className="sign-up">
+      {/* <div className="left-background-con">
         <div className="left-background-pic">
           <img src={LP} alt="" />
         </div>
         <p>Empower Content Creation with a User Friendly Platform</p>
+      </div> */}
+      <div className="signup-logo">
+        <img src={logo}></img>
       </div>
-
-      <div className="form-con">
+      <div className="right-side">
         <form onSubmit={submitLoginFtn}>
-          {/* {errMessage && (
-            <div className="error-message">
-              <div>
-                <div className="error-img">
-                  <img src={Misc} alt="" />
-                </div>
-                <p>{message}</p>
-                <IoMdClose
-                  className="cancel"
-                  onClick={() => removeErrMessage()}
-                />
-              </div>
-            </div>
-          )} */}
           <div>
             <h1>
               Welcome to <span>Lecture</span> <span>Podcast</span>
             </h1>
-            <p className="form-header">
+            {/* <p className="form-header">
               Enter your details below to create an account.
-            </p>
+            </p> */}
           </div>
           <label htmlFor="email">
             <input
               type="email"
               id="email"
-              placeholder="ayodajialoba@gmail.com"
+              placeholder="Email"
               onChange={handleChange}
               name="email"
               value={loginDetails.email}
@@ -168,19 +155,6 @@ function Login() {
               )}
             </div>
           </div>
-
-          <label htmlFor="areaOfExpertise">
-            <select
-              id="areaOfExpertise"
-              name="areaOfExpertise"
-              value={loginDetails.areaOfExpertise}
-              onChange={handleChange}>
-              <option>Area of expertise</option>
-              {/* <option value="lecturer">Lecturer</option> */}
-              {/* <option value="student">Student</option> */}
-              <option value="lecturer">Lecturer</option>
-            </select>
-          </label>
 
           <div className="check-p-con">
             {/* <div>
@@ -213,19 +187,67 @@ function Login() {
             </div>
           </div> */}
 
-          <div className="login-link-headset">
+          <div className="login-support">
             <div>
               <p>
-                Already have an account? <Link to="/signup">Sign Up</Link>
+                Do not have an account? <Link to="/signup">Sign Up</Link>
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <img src={headset} alt="" />
               <p>Help and support</p>
-            </div>
+            </div> */}
           </div>
         </form>
+      </div>
+      <div className="blob2">
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+              <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{stopColor: "rgb(194, 229, 156)"}}></stop>
+                  <stop offset="100%" style={{stopColor: "rgb(100, 179, 244)"}}></stop>
+                  </linearGradient>
+              </defs>
+              <path id="blob"  fill="#01003a38">
+                  <animate attributeName="d" dur="10000ms" repeatCount="indefinite" values="M420,298Q382,346,347,393.5Q312,441,249.5,442Q187,443,119,419Q51,395,50.5,322.5Q50,250,50,177.5Q50,105,118,79Q186,53,251.5,49Q317,45,384.5,74Q452,103,455,176.5Q458,250,420,298Z;
+                  
+                  M459.5,316.5Q433,383,370.5,406Q308,429,249.5,429.5Q191,430,126.5,408.5Q62,387,36.5,318.5Q11,250,38.5,183Q66,116,129,93.5Q192,71,247.5,78.5Q303,86,357,109.5Q411,133,448.5,191.5Q486,250,459.5,316.5Z;
+
+                  M443,304.5Q401,359,353,389.5Q305,420,248,425.5Q191,431,139,399.5Q87,368,49.5,309Q12,250,34.5,180Q57,110,119,74Q181,38,250,37.5Q319,37,350.5,95.5Q382,154,433.5,202Q485,250,443,304.5Z;
+
+                  M469.5,319Q440,388,380,427Q320,466,261,431.5Q202,397,140.5,385.5Q79,374,59.5,312Q40,250,70,195.5Q100,141,150,118Q200,95,249,99Q298,103,347,123.5Q396,144,447.5,197Q499,250,469.5,319Z;
+
+                  M425,304.5Q399,359,358.5,410Q318,461,246,473Q174,485,121.5,433.5Q69,382,82.5,316Q96,250,80,182.5Q64,115,120.5,71Q177,27,249.5,27.5Q322,28,351.5,91.5Q381,155,416,202.5Q451,250,425,304.5Z;
+
+                  M420,298Q382,346,347,393.5Q312,441,249.5,442Q187,443,119,419Q51,395,50.5,322.5Q50,250,50,177.5Q50,105,118,79Q186,53,251.5,49Q317,45,384.5,74Q452,103,455,176.5Q458,250,420,298Z;
+                  "></animate>
+              </path>
+          </svg>
+      </div>
+      <div className="blob3">
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+              <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{stopColor: "rgb(194, 229, 156)"}}></stop>
+                  <stop offset="100%" style={{stopColor: "rgb(100, 179, 244)"}}></stop>
+                  </linearGradient>
+              </defs>
+              <path id="blob"  fill="#ffa6001e">
+                  <animate attributeName="d" dur="10000ms" repeatCount="indefinite" values="M420,298Q382,346,347,393.5Q312,441,249.5,442Q187,443,119,419Q51,395,50.5,322.5Q50,250,50,177.5Q50,105,118,79Q186,53,251.5,49Q317,45,384.5,74Q452,103,455,176.5Q458,250,420,298Z;
+                  
+                  M459.5,316.5Q433,383,370.5,406Q308,429,249.5,429.5Q191,430,126.5,408.5Q62,387,36.5,318.5Q11,250,38.5,183Q66,116,129,93.5Q192,71,247.5,78.5Q303,86,357,109.5Q411,133,448.5,191.5Q486,250,459.5,316.5Z;
+
+                  M443,304.5Q401,359,353,389.5Q305,420,248,425.5Q191,431,139,399.5Q87,368,49.5,309Q12,250,34.5,180Q57,110,119,74Q181,38,250,37.5Q319,37,350.5,95.5Q382,154,433.5,202Q485,250,443,304.5Z;
+
+                  M469.5,319Q440,388,380,427Q320,466,261,431.5Q202,397,140.5,385.5Q79,374,59.5,312Q40,250,70,195.5Q100,141,150,118Q200,95,249,99Q298,103,347,123.5Q396,144,447.5,197Q499,250,469.5,319Z;
+
+                  M425,304.5Q399,359,358.5,410Q318,461,246,473Q174,485,121.5,433.5Q69,382,82.5,316Q96,250,80,182.5Q64,115,120.5,71Q177,27,249.5,27.5Q322,28,351.5,91.5Q381,155,416,202.5Q451,250,425,304.5Z;
+
+                  M420,298Q382,346,347,393.5Q312,441,249.5,442Q187,443,119,419Q51,395,50.5,322.5Q50,250,50,177.5Q50,105,118,79Q186,53,251.5,49Q317,45,384.5,74Q452,103,455,176.5Q458,250,420,298Z;
+                  "></animate>
+              </path>
+          </svg>
       </div>
     </div>
   );

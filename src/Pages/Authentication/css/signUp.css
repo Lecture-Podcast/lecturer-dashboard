@@ -1,7 +1,12 @@
 .sign-up {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .sign-up .left-side {
@@ -31,13 +36,44 @@
   font-weight: 600;
   line-height: 3.875rem;
 }
-
+.signup-logo{
+  margin-bottom: 40px;
+}
+.signup-logo img{
+  width: 120%;
+  z-index: 5;
+  color: #01003a38;
+}
+.blob2{
+  width: 60%;
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.blob3{
+  width: 50%;
+  display: block;
+  position: absolute;
+  top: 80%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
 .sign-up .right-side {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  width: 38%;
-  margin: 0 4vw;
+  width: 35%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.087);
+  -webkit-box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.089);
+  -moz-box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.084);
+    margin: 0 4vw;
   padding: 4vh;
 }
 
@@ -55,31 +91,39 @@
 .sign-up form select {
   border-radius: 10px;
   width: 100%;
-  padding: 12px 6px;
+  padding: 10px;
   background-color: #fafafa;
   color: rgba(1, 0, 58, 0.41);
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Poppins";
   font-weight: 400;
-  outline: none;
+  outline: #ffa6009e;
   border: none;
 }
-
+.signup-form{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.signup-form label{
+  width: 100%;
+}
 .sign-up input {
   outline: none;
   border: none;
   width: 100% !important;
   padding: 10px;
-  margin-bottom: 15px;
   box-sizing: border-box;
   background-color: #fafafa !important;
   border-radius: 10px !important;
   font-family: "Poppins";
-  font-size: 15px;
+  font-size: 13px;
 }
-
+.sign-up input:focus{
+  outline: #ffa6009e !important;
+}
 .sign-up form div:first-child h1 {
-  font-size: 33px;
+  font-size: 23px;
   font-family: "General Sans", sans-serif;
   font-weight: 600;
   /* wordWrap: 'break-word' */
@@ -98,7 +142,7 @@
 
 .sign-up form div:first-child p {
   color: #5e6b74;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Poppins";
   font-weight: 400;
   padding-bottom: 3vh;
@@ -136,7 +180,11 @@
   width: 100%;
   /* background-color: rgba(255, 165, 0, 0.6); */
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
+  height: 40px;
   color: white;
   cursor: pointer;
   font-size: 15px;

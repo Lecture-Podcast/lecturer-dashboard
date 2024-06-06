@@ -8,7 +8,7 @@ export const signUp = (userDetailsPhone, history) => {
 
     const phone_number = userDetailsPhone.phone;
 
-    // const area_of_expertise = userDetailsPhone.userDetails?.areaOfExpertise;
+    const area_of_expertise = userDetailsPhone.userDetails?.areaOfExpertise;
 
     const password = userDetailsPhone.userDetails?.password;
 
@@ -19,7 +19,8 @@ export const signUp = (userDetailsPhone, history) => {
       email,
       phone_number,
       password,
-      confirm_password: confirmPassword
+      confirm_password: confirmPassword,
+      area_of_expertise
     };
 
     // console.log(userData, "userDatalecturer");

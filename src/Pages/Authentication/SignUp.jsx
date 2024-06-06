@@ -41,7 +41,7 @@ function SignUp() {
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
-    // areaOfExpertise: "",
+    areaOfExpertise: "lecturer",
     affiliatedInstitution: "",
     password: "",
     confirmPassword: ""
@@ -77,6 +77,7 @@ function SignUp() {
   function submitForm(e) {
     e.preventDefault();
     setIsLoading(true);
+    console.log(userDetails)
     if (userDetails.password === userDetails.confirmPassword) {
       dispatch(signUp({userDetails, phone},()=>{
         setModal(true)

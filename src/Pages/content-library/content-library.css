@@ -32,3 +32,32 @@
   gap: 1em;
   justify-content: center;
 }
+.content-menu-bottom{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dropdown-menu{
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+}
+.dropdown-menu button{
+  margin-bottom: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #667185;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.delete-button{
+  color: rgba(237, 99, 99, 0.897);
+}

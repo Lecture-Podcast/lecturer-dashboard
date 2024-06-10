@@ -11,6 +11,8 @@ import video from '../../Assets/animation/video.json';
 import file from '../../Assets/animation/file.json';
 import LottieAnimation from "../../Lotties";
 import ContentModal from "../../Components/Modals/ContentModal";
+import { HiDotsVertical } from "react-icons/hi";
+import { AiFillEdit, AiOutlineDelete } from "react-icons/ai";
 const ContentLibrary = ({
   fetchcontent,
   loading,
@@ -19,18 +21,25 @@ const ContentLibrary = ({
 }) => {
   const [modal, setmodal] = useState(false)
   const [selectedContent, setSelectedContent] = useState(null); // State to track the selected content
-
+  const [dropdownVisible, setDropdownVisible] = useState(null);
   // Function to handle the click event when a content item is clicked
   const handleContentClick = (content) => {
       setSelectedContent(content); // Set the selected content
   };
-  console.log(data)
   const togglemodal = ()=>{
     setmodal(true)
   }
   useEffect(()=>{
     fetchcontent()
   },[])
+  const handleDropdownToggle = (id) => {
+    if (dropdownVisible === id) {
+      setDropdownVisible(null);
+    } else {
+      setDropdownVisible(id);
+    }
+  };
+
   return (
     <>
     {loading ? (
@@ -95,8 +104,17 @@ const ContentLibrary = ({
                             <p className="text">
                               {content.course_code}
                             </p>
-                            <div>
+                            <div className="content-menu-bottom">
                               <p className="date">Uploaded {content.timestamp.slice(0,10)}</p>
+                              <div className="menu" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDropdownToggle(content._id); }}>
+                                <HiDotsVertical />
+                                {dropdownVisible === content._id && (
+                                  <div className="dropdown-menu">
+                                    <button onClick={() => alert('Edit clicked')}><AiFillEdit /> Edit</button><br></br>
+                                    <button className="delete-button" onClick={() => alert('Delete clicked')}><AiOutlineDelete /> Delete</button>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>

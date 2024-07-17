@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PROFILE_IMAGE_FALIURE, CHANGE_PROFILE_IMAGE_REQUEST, CHANGE_PROFILE_IMAGE_SUCCESS } from "./SettingsType"
+import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PROFILE_IMAGE_FALIURE, CHANGE_PROFILE_IMAGE_REQUEST, CHANGE_PROFILE_IMAGE_SUCCESS, UPDATE_PROFILE_FALIURE, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from "./SettingsType"
 
 //For video content
 export const changepasswordrequest = ()=>{
@@ -16,6 +16,23 @@ export const changepasswordsuccess = (data)=>{
 export const changepasswordfaliure = (error)=>{
     return{
         type:CHANGE_PASSWORD_FALIURE,
+        payload: error
+    }
+}
+export const updateprofilerequest = ()=>{
+    return{
+        type:UPDATE_PROFILE_REQUEST
+    }
+}
+export const updateprofilesuccess = (data)=>{
+    return{
+        type:UPDATE_PROFILE_SUCCESS,
+        payload: data
+    }
+}
+export const updateprofilefaliure = (error)=>{
+    return{
+        type:UPDATE_PROFILE_FALIURE,
         payload: error
     }
 }
@@ -41,7 +58,7 @@ export const changeprofileimagefaliure = (error)=>{
 
 
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1";
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjYwMjgzNjA1MTdlOTA4OTg3OTdiZTRmIiwiZW1haWwiOiJqb2huZG9lMjc4QGdtYWlsLmNvbSIsImZ1bGxuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE3MTE0NDA3NTd9.KLJbmkUyJJDt72N-nE8XqqnWkNgD0Rb6EP7tuxNwYLo"
+
 
 
 export const changePassword = (poststate, history, setErrorHandler) => {
@@ -63,6 +80,30 @@ export const changePassword = (poststate, history, setErrorHandler) => {
         catch(error){
             const errormsg = error.message
             dispatch(changepasswordfaliure(errormsg))
+            setErrorHandler({ hasError: true, message: error?.response?.data?.message });
+        }
+    }
+}
+
+export const updateprofile = (poststate, history, setErrorHandler) => {
+    return async (dispatch) => {
+        dispatch(updateprofilerequest())
+        try{
+            let datas = JSON.parse(localStorage.getItem("auth"));
+            const headers = {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${datas.token}`,
+            };
+            const response = await axios.post(`${baseURl}/lecturer/settings/update-details`, poststate,{ headers: headers })
+            const data = response
+            dispatch(updateprofilesuccess(data))
+            if(response.status===201){
+                history();
+            }
+        }
+        catch(error){
+            const errormsg = error.message
+            dispatch(updateprofilefaliure(errormsg))
             setErrorHandler({ hasError: true, message: error?.response?.data?.message });
         }
     }

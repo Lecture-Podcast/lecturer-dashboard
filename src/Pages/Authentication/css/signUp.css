@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
   height: 100vh;
-  margin: 0;
-  padding: 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -54,11 +54,11 @@
   z-index: 0;
 }
 .blob3{
-  width: 50%;
+  width: 60%;
   display: block;
   position: absolute;
-  top: 80%;
-  left: 90%;
+  top: 64%;
+  left: 80%;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
@@ -112,7 +112,7 @@
   outline: none;
   border: none;
   width: 100% !important;
-  padding: 10px;
+  padding: 1rem;
   box-sizing: border-box;
   background-color: #fafafa !important;
   border-radius: 10px !important;
@@ -159,7 +159,7 @@
 .sign-up form .password .input-absolute {
   position: absolute;
   right: 1vw;
-  top: 2vh;
+  top: 2.2vh;
 }
 
 .sign-up .check-con {
@@ -262,4 +262,15 @@
 
   line-height: 32px;
   /* wordWrap: 'break-word' */
+}
+@media (max-width:1000px) {
+  .blob2{
+    display: none;
+  }
+  .blob3{
+    display: none;
+  }
+  .sign-up .right-side {
+    width: 90%;
+  }
 }

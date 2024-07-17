@@ -52,8 +52,21 @@
     font-size: 1rem;
 }
 
-@media only screen and (max-width: 767px) {
-    .sidebar {
-        display: none;
+@media only screen and (max-width: 1000px) {
+    .sidebar{
+        transform: translateY(-110%);
+        transition: all 0.4s;
+        z-index: 100;
     }
-  }
+    .sidebaropen{
+        transform: translateX(0%);
+    }
+    .sidebar-top-logo{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    } 
+    .sidebar-close{
+        display: block;
+    }
+}

@@ -1,50 +1,37 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { FcGoogle } from "react-icons/fc";
-
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
 import { FaEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 // import { IoMdClose } from "react-icons/io";
-
 import LP from "../../Assets/images/logo.png";
 import headset from "../../Assets/images/headset.png";
 // import Misc from "../img/Misc icon.png";
 import logo from "../../Assets/images/logo2.png"
 import "./css/login.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../Redux/usersAuth/usersAction";
 import LottieAnimation from "../../Lotties";
 import loader from "../../Assets/animation/loading4.json";
-
 import swal from 'sweetalert';
 
 
 function Login() {
   const { message } = useSelector((state) => state.auth);
   // console.log(message);
-
   const dispatch = useDispatch();
   const history = useNavigate();
   const [visible, setVisible] = useState(true);
-
   // const [errMessage, setErrMessage] = useState(true);
-
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
   });
-
   const [isChecked, setIsChecked] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false)
-
   // const [disableBtn, setIsDisableBtn] = useState(false)
-
   useEffect(() => {
 
     // It is the user's email we are getting back to the email input

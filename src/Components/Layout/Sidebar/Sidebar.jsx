@@ -9,17 +9,22 @@ import { FiSettings } from "react-icons/fi";
 import { TbBriefcase } from "react-icons/tb";
 import { PiSignOutLight } from "react-icons/pi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { LogOutAuthAction } from "../../../Redux/usersAuth/usersAction";
+import { connect } from "react-redux";
 // import { useState } from 'react';
-const Sidebar = () => {
+const Sidebar = ({logout, open, toggleopen}) => {
   const location = useLocation();
+  const history = useNavigate();
   const [timeoutId, setTimeoutId] = React.useState(null);
   const [value, setValue] = React.useState(0);
   const handleChange = (event) => {
     setValue(event);
   };
   const handlelogout =()=>{
-   
+    logout(
+      ()=>{ history(`/`)}
+    )
   }
 
 useEffect(() => {
@@ -34,7 +39,7 @@ useEffect(() => {
     };
 }, []);
   return (
-    <div className="sidebar">
+    <div className={open?"sidebaropen sidebar":"sidebar"}>
       <div className="sidebar-logo">
         <img src={logo}></img>
       </div>
@@ -45,6 +50,7 @@ useEffect(() => {
               <li
                 className={location.pathname === "/home" ? "active" : ""}
                 onClick={() => {
+                  toggleopen();
                   handleChange(0);
                 }}
               >
@@ -58,6 +64,7 @@ useEffect(() => {
               <li 
                 className={location.pathname === "/home/create-library" === 1 ? "active" : ""}
                 onClick={() => {
+                  toggleopen();
                   handleChange(1);
                 }}
               >
@@ -71,6 +78,7 @@ useEffect(() => {
               <li
                 className={location.pathname === "/home/create" ? "active" : ""}
                 onClick={() => {
+                  toggleopen();
                   handleChange(2);
                 }}
               >
@@ -95,6 +103,7 @@ useEffect(() => {
               <li
                 className={location.pathname === "/home/settings" ? "active" : ""}
                 onClick={() => {
+                  toggleopen();
                   handleChange(4);
                 }}
               >
@@ -128,7 +137,7 @@ useEffect(() => {
             </li> */}
           </ul>
         </nav>
-        <div className="log-out">
+        <div className="log-out" onClick={handlelogout}>
           <span>
             <PiSignOutLight />
           </span>
@@ -139,4 +148,14 @@ useEffect(() => {
   );
 };
 
-export default Sidebar;
+const mapStateToProps = state => {
+  return{
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+      logout: (history) => dispatch(LogOutAuthAction(history)),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

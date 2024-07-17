@@ -13,7 +13,7 @@
     padding: 1.875rem;
 }
 
-@media only screen and (max-width: 767px) { 
+@media only screen and (max-width: 1000px) { 
     .layout-right {
         width: 100%;
         border: 1px solid black;

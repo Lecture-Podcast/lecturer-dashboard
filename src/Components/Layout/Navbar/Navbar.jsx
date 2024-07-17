@@ -3,13 +3,16 @@ import React, { useEffect } from 'react'
 import { RiSearchLine } from "react-icons/ri";
 import { TfiBell } from "react-icons/tfi";
 import { FaCheck, FaChevronDown } from "react-icons/fa";
+import logo from "../../../Assets/images/logo2.png"
 import profile from "../../../Assets/images/profile.jpeg"
 import nopro from "../../../Assets/images/nopro.jpg"
 import { connect } from 'react-redux';
+import { FaBarsStaggered } from "react-icons/fa6";
+import { MdClose } from "react-icons/md";
 import { fetchprofile } from '../../../Redux/Profile/ProfileAction';
 import  Skeleton, {SkeletonTheme}  from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-const Navbar = ({profiledata, loading, error, fetchprofile}) => {
+const Navbar = ({profiledata, loading, error, fetchprofile,open, toggleopen}) => {
     // console.log(profiledata)
     console.log(loading)
     useEffect(()=>{
@@ -17,40 +20,48 @@ const Navbar = ({profiledata, loading, error, fetchprofile}) => {
     },[])
     return ( 
         <div className="navbar">
-            <div className="navbar-search">
-                <RiSearchLine/>
-                <input type='text'></input>
-            </div>
-            <div className="navbar-profile">
-                <div className="notification-bell">
-                    <TfiBell/>
+            <div className="navbar-left">
+                <div className="navbar-search">
+                    <RiSearchLine/>
+                    <input type='text'></input>
                 </div>
-                <div className="profile-details">
-                    <div className="dp">
-
-                        <img src={profiledata?.profile_image == null ? nopro :profiledata.profile_image }></img>
-                        <div className="tick">
-                            <FaCheck/>
+                <div className="navbar-logo">
+                    <img src={logo}></img>
+                </div>
+            </div>
+            <div className="navbar-right">
+                <div className="navbar-profile">
+                    {/* <div className="notification-bell">
+                        <TfiBell/>
+                    </div> */}
+                    <div className="profile-details">
+                        <div className="dp">
+                            <img src={profiledata?.profile_image == null ? nopro :profiledata.profile_image }></img>
+                            <div className="tick">
+                                <FaCheck/>
+                            </div>
                         </div>
-                        
+                        <div className="profile-name">
+                            {loading ? (
+                                <SkeletonTheme baseColor="#F5F5F5" highlightColor="#808080" width={100} height={10}>
+                                    <Skeleton count={2}/>
+                                </SkeletonTheme>
+                                
+                            ): (
+                                <>
+                                <h4>{profiledata?.fullname}</h4>
+                                <p>{profiledata?.email}</p>
+                                </>
+                            )}
+                    
+                        </div>
+                        <div className="profile-more">
+                            <FaChevronDown/>
+                        </div>
                     </div>
-                    <div className="profile-name">
-                        {loading ? (
-                            <SkeletonTheme baseColor="#F5F5F5" highlightColor="#808080" width={100} height={10}>
-                                <Skeleton count={2}/>
-                            </SkeletonTheme>
-                            
-                        ): (
-                            <>
-                            <h4>{profiledata?.fullname}</h4>
-                            <p>{profiledata?.email}</p>
-                            </>
-                        )}
-                
-                    </div>
-                    <div className="profile-more">
-                        <FaChevronDown/>
-                    </div>
+                </div>
+                <div className="navbar-hambuger" onClick={toggleopen}>
+                   {!open ? <FaBarsStaggered /> : <MdClose />}
                 </div>
             </div>
         </div>

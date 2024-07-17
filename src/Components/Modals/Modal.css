@@ -94,6 +94,27 @@
     justify-content: center;
     text-decoration: none;
 }
+.delete-button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.delete-button button{
+    width: 50% !important;
+}
+.cancle-buttons{
+    width: 100%;
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    border: 1px solid #FFA500;
+    padding: 1.2rem 3rem;
+    font-size: 12.6px;
+    font-weight: 600;
+    font-family: "Inter";
+    color: #FFA500;
+}
 .submit-buttons{
     width: 100%;
     margin-top: 10px;

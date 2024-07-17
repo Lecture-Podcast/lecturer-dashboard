@@ -14,7 +14,6 @@
 .home-body-top{
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 23px;
 }
 .home-chart{
@@ -172,6 +171,9 @@
     color: #FFA500;
     font-size: 1.1rem;
 }
+.action-text{
+    width: calc(100% - 48px);
+}
 .action-text h3{
     color: #101928;
     font-size: 16px;
@@ -239,15 +241,20 @@
 .loading-animation-2{
     width: 20%;
 }
-@media only screen and (max-width: 767px) { 
-    .home-body-bottom{
+@media only screen and (max-width: 1000px) { 
+    .home-body-bottom, .home-body-top{
         flex-direction: column;
     }
-
     .quick-action{
         width: 100%;
     }
     .recent-message{
+        width: 100%;
+    }
+    .home-chart{
+        width: 100%;
+    }
+    .home-calendar{
         width: 100%;
     }
   }

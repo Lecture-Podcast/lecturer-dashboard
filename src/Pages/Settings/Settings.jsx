@@ -17,6 +17,10 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
     const dashOffset = dashArray - (dashArray * 70) / 100
     const inputRef = useRef();
     const [selectedfile, setselectedfile] = useState(null);
+    const [showedit, setShowEdit] = useState(false)
+    const toggleedit = ()=>{
+        setShowEdit(!showedit)
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
         setselectedfile(event.target.files[0])
@@ -114,9 +118,17 @@ const Settings = ({profiledata, loading, error, fetchprofile, changeprofileimage
                                             label="Phone number"
                                         />
                                     </div>
-                                    <div className="submit-button">
-                                        <button>Edit</button>
-                                    </div>
+                                    {!showedit && (
+                                        <div className="submit-button">
+                                            <button onClick={(e)=>{e.preventDefault();toggleedit();}}>Edit</button>
+                                        </div>
+                                    )}
+                                    {showedit && (
+                                        <div className="submit-button">
+                                            <button onClick={toggleedit}>Cancle</button>
+                                            <button>Edit</button>
+                                        </div>
+                                    )}
                                 </form>
                             </div>
                         </div>

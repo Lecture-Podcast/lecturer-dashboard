@@ -1,16 +1,20 @@
 import "./Layout.css"
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from "./Sidebar/Sidebar";
 import Navbar from "./Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 const Layout = () => {
+    const [open, setOpen] = useState(false)
+    const togglesidebar = ()=>{
+        setOpen(!open)
+    }
     return ( 
         <div className="layout">
             <div className="layout-left">
-                <Sidebar/>
+                <Sidebar open={open} toggleopen={togglesidebar}/>
             </div>
             <div className="layout-right">
-                <Navbar/>
+                <Navbar open={open} toggleopen={togglesidebar}/>
                 <div className="layout-body">
                     <Outlet/>
                 </div>

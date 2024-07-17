@@ -1,4 +1,4 @@
-import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_REQUEST, FETCH_SINGLE_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_SUCCESS } from "./ContentType"
+import { AUDIO_REQUEST, AUDIO_SUCCESS, AUDIO_FALIURE, FILE_REQUEST, FILE_FALIURE, FILE_SUCCESS, VIDEO_REQUEST, VIDEO_SUCCESS, VIDEO_FALIURE, FETCH_CONTENT_REQUEST, FETCH_CONTENT_SUCCESS, FETCH_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_REQUEST, FETCH_SINGLE_CONTENT_FALIURE, FETCH_SINGLE_CONTENT_SUCCESS, DELETE_CONTENT_REQUEST, DELETE_CONTENT_SUCCESS, DELETE_CONTENT_FALIURE, EDIT_AUDIO_FALIURE, EDIT_AUDIO_SUCCESS, EDIT_AUDIO_REQUEST, EDIT_FILE_FALIURE, EDIT_FILE_SUCCESS, EDIT_FILE_REQUEST, EDIT_VIDEO_FALIURE, EDIT_VIDEO_SUCCESS, EDIT_VIDEO_REQUEST } from "./ContentType"
 import axios from "axios";
 
 
@@ -38,6 +38,23 @@ export const fetchsinglecontentfaliure = (error)=>{
         payload: error
     }
 }
+export const deletecontentrequest = ()=>{
+    return{
+        type:DELETE_CONTENT_REQUEST
+    }
+}
+export const deletecontentsuccess = (data)=>{
+    return{
+        type:DELETE_CONTENT_SUCCESS,
+        payload: data
+    }
+}
+export const deletecontentfaliure = (error)=>{
+    return{
+        type:DELETE_CONTENT_FALIURE,
+        payload: error
+    }
+}
 //FOR Audio content
 export const audiorequest = ()=>{
     return{
@@ -53,6 +70,24 @@ export const audiosuccess = (data)=>{
 export const audiofaliure = (error)=>{
     return{
         type:AUDIO_FALIURE,
+        payload: error
+    }
+}
+//FOR Audio content
+export const editaudiorequest = ()=>{
+    return{
+        type:EDIT_AUDIO_REQUEST
+    }
+}
+export const editaudiosuccess = (data)=>{
+    return{
+        type:EDIT_AUDIO_SUCCESS,
+        payload: data
+    }
+}
+export const editaudiofaliure = (error)=>{
+    return{
+        type:EDIT_AUDIO_FALIURE,
         payload: error
     }
 }
@@ -76,6 +111,26 @@ export const filefaliure = (error)=>{
     }
 }
 
+//For File content
+export const editfilerequest = ()=>{
+    return{
+        type:EDIT_FILE_REQUEST
+    }
+}
+export const editfilesuccess = (data)=>{
+    return{
+        type:EDIT_FILE_SUCCESS,
+        payload: data
+    }
+}
+export const editfilefaliure = (error)=>{
+    return{
+        type:EDIT_FILE_FALIURE,
+        payload: error
+    }
+}
+
+
 //For video content
 export const videorequest = ()=>{
     return{
@@ -95,8 +150,27 @@ export const videofaliure = (error)=>{
     }
 }
 
+//For video content
+export const editvideorequest = ()=>{
+    return{
+        type:EDIT_VIDEO_REQUEST
+    }
+}
+export const editvideosuccess = (data)=>{
+    return{
+        type:EDIT_VIDEO_SUCCESS,
+        payload: data
+    }
+}
+export const editvideofaliure = (error)=>{
+    return{
+        type:EDIT_VIDEO_FALIURE,
+        payload: error
+    }
+}
+
+
 const baseURl = "https://lecture-podcast-auth.onrender.com/api/v1";
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZWN0dXJlcklkIjoiNjYwMjgzNjA1MTdlOTA4OTg3OTdiZTRmIiwiZW1haWwiOiJqb2huZG9lMjc4QGdtYWlsLmNvbSIsImZ1bGxuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE3MTE0NDA3NTd9.KLJbmkUyJJDt72N-nE8XqqnWkNgD0Rb6EP7tuxNwYLo"
 
 
 export const fetchcontent = ( ) => {
@@ -121,6 +195,31 @@ export const fetchcontent = ( ) => {
        
     }
 }
+
+export const deletecontent = (id, history) => {
+    return async (dispatch) => {
+        dispatch(deletecontentrequest())
+
+        let datas = JSON.parse(localStorage.getItem("auth"));
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas.token}`,
+        };
+        axios.delete(`${baseURl}/lecturer/content/delete-content?id=${id}`, { headers: headers })
+        .then( response => {
+            const data = response.data.data
+            console.log(data)
+            dispatch(deletecontentsuccess(data))
+            history()
+        })
+        .catch(error =>{
+            const errorMsg = error.message
+            dispatch(deletecontentfaliure(errorMsg))
+        })
+       
+    }
+}
+
 export const fetchsinglecontent = ({id}) => {
     return async (dispatch) => {
         dispatch(fetchsinglecontentrequest())
@@ -170,6 +269,30 @@ export const createAudio = (poststate, history, setErrorHandler) => {
     }
 }
 
+export const editAudio = (poststate, history, setErrorHandler) => {
+    return async (dispatch) => {
+        dispatch(editaudiorequest())
+        try{
+            let datas = JSON.parse(localStorage.getItem("auth"));
+            const headers = {
+                "Content-Type": "multipart/form-data",
+                authorization: `Bearer ${datas.token}`,
+            };
+            console.log("THIS IS POSTSTATE", poststate)
+            const response = await axios.post(`${baseURl}/lecturer/content/upload-audio-content`, poststate,{ headers: headers })
+            const data = response
+            dispatch(editaudiosuccess(data))
+            if(response.status===201){
+                history();
+            }
+        }
+        catch(error){
+            const errormsg = error.message
+            dispatch(editaudiofaliure(errormsg))
+            setErrorHandler({ hasError: true, message: error?.response?.data?.message });
+        }
+    }
+}
 
 export const createFile = (poststate, history, setErrorHandler) => {
     return async (dispatch) => {
@@ -196,6 +319,32 @@ export const createFile = (poststate, history, setErrorHandler) => {
     }
 }
 
+export const editFile = (poststate, history, setErrorHandler) => {
+    return async (dispatch) => {
+        dispatch(editfilerequest())
+
+        try{
+            let datas = JSON.parse(localStorage.getItem("auth"));
+            const headers = {
+                "Content-Type": "multipart/form-data",
+                authorization: `Bearer ${datas.token}`,
+            };
+            const response = await axios.post(`${baseURl}/lecturer/content/upload-file-content`, poststate,{ headers: headers })
+            const data = response
+            dispatch(editfilesuccess(data))
+            if(response.status===201){
+                history();
+            }
+        }
+        catch(error){
+            const errormsg = error.message
+            dispatch(editfilefaliure(errormsg))
+            setErrorHandler({ hasError: true, message: error?.response?.data?.message });
+        }
+    }
+}
+
+
 export const createvideo = (poststate, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(videorequest())
@@ -216,6 +365,31 @@ export const createvideo = (poststate, history, setErrorHandler) => {
         catch(error){
             const errormsg = error.message
             dispatch(videofaliure(errormsg))
+            setErrorHandler({ hasError: true, message: error?.response?.data?.message });
+        }
+    }
+}
+
+export const editvideo = (poststate, history, setErrorHandler) => {
+    return async (dispatch) => {
+        dispatch(editvideorequest())
+
+        try{
+            let datas = JSON.parse(localStorage.getItem("auth"));
+            const headers = {
+                "Content-Type": "multipart/form-data",
+                authorization: `Bearer ${datas.token}`,
+            };
+            const response = await axios.post(`${baseURl}/lecturer/content/upload-video-content`, poststate,{ headers: headers })
+            const data = response
+            dispatch(editvideosuccess(data))
+            if(response.status===201){
+                history();
+            }
+        }
+        catch(error){
+            const errormsg = error.message
+            dispatch(editvideofaliure(errormsg))
             setErrorHandler({ hasError: true, message: error?.response?.data?.message });
         }
     }

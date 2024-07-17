@@ -55,8 +55,8 @@ const Home = ({loading}) => {
                         </div>
                     </div>
                     <div className="home-calendar">
-                        <p className="chart-head">Content Performance</p>
-                        <div className="calendar">
+                        <p className="chart-head">Schedule Calendar</p>
+                        {/* <div className="calendar">
                             <BasicDateCalendar/>
                         </div>
                         <div className="schedule-card">
@@ -67,6 +67,11 @@ const Home = ({loading}) => {
                                 <h4>CIT305 Live class</h4>
                                 <p>12:00 pm - 1:30 pm</p>
                             </div>
+                        </div> */}
+
+                        <div className="comingsoon-animation">
+                            <LottieAnimation data={coming}/>
+                            <p className="coming-soon-text">Coming soon</p>
                         </div>
                     </div>
                 </div>

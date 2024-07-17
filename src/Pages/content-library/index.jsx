@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./content-library.css";
 import Empty from "../../Assets/images/Empty.svg";
 import LibraryCard from "../../Components/LibraryCard";
-import { fetchcontent } from "../../Redux/Content/CotentAction";
+import { deletecontent, fetchcontent } from "../../Redux/Content/CotentAction";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loading2 from "../../Assets/animation/loadingmain.json"
 import audio from '../../Assets/animation/audio.json';
 import video from '../../Assets/animation/video.json';
@@ -13,13 +13,20 @@ import LottieAnimation from "../../Lotties";
 import ContentModal from "../../Components/Modals/ContentModal";
 import { HiDotsVertical } from "react-icons/hi";
 import { AiFillEdit, AiOutlineDelete } from "react-icons/ai";
+import DeleteModal from "../../Components/Modals/DeleteModal";
+import EditModal from "../../Components/Modals/EditModal";
 const ContentLibrary = ({
   fetchcontent,
   loading,
   error,
-  data
+  data,
+  deletecontent,
+  deleting
 }) => {
+  const history = useNavigate()
   const [modal, setmodal] = useState(false)
+  const [showdelete, setShowdelete] = useState(false)
+  const [showedit, setShowedit] = useState(false)
   const [selectedContent, setSelectedContent] = useState(null); // State to track the selected content
   const [dropdownVisible, setDropdownVisible] = useState(null);
   // Function to handle the click event when a content item is clicked
@@ -32,6 +39,21 @@ const ContentLibrary = ({
   useEffect(()=>{
     fetchcontent()
   },[])
+  const togglemodal2 = ()=>{
+    setShowdelete(!showdelete)
+  }
+  const togglemodal3 = ()=>{
+    setShowedit(!showedit)
+  }
+  const handledelete = async (id)=>{
+    try{
+      await deletecontent(id, ()=>{
+        history("/home/create-library")
+      })
+    }catch(e){
+
+    }
+  }
   const handleDropdownToggle = (id) => {
     if (dropdownVisible === id) {
       setDropdownVisible(null);
@@ -110,11 +132,20 @@ const ContentLibrary = ({
                                 <HiDotsVertical />
                                 {dropdownVisible === content._id && (
                                   <div className="dropdown-menu">
-                                    <button onClick={() => alert('Edit clicked')}><AiFillEdit /> Edit</button><br></br>
-                                    <button className="delete-button" onClick={() => alert('Delete clicked')}><AiOutlineDelete /> Delete</button>
+                                    <button onClick={() => togglemodal3()}><AiFillEdit /> Edit</button><br></br>
+                                    <button className="delete-button" onClick={() => togglemodal2()}><AiOutlineDelete /> Delete</button>
                                   </div>
                                 )}
                               </div>
+                              {showedit && 
+                                <EditModal 
+                                  contentTitle={content.course_title} 
+                                  contentDes={content.course_code} 
+                                  contentType={content.content_type} 
+                                  togglemodal={togglemodal3}
+                                />
+                              }
+                              {showdelete && <DeleteModal contentid={content._id} handledelete={handledelete} togglemodal={togglemodal2}/>}
                             </div>
                           </div>
                         </div>
@@ -162,15 +193,19 @@ const mapStoreToProps = (state) => {
   return {
     loading: state.content.loading,
     error: state.content.error,
-    data: state.content.data
+    data: state.content.data,
+    deleting: state.deletecontent.loading
   };
-};
+};  
 
 const mapDispatchToProps = (dispatch) => {
   return {
       fetchcontent: () => {
           dispatch(fetchcontent());
       },
+      deletecontent: (id, history) =>{
+        dispatch(deletecontent(id, history))
+      }
   };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(ContentLibrary);

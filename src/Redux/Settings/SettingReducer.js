@@ -1,4 +1,4 @@
-import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PROFILE_IMAGE_FALIURE, CHANGE_PROFILE_IMAGE_REQUEST, CHANGE_PROFILE_IMAGE_SUCCESS } from "./SettingsType"
+import { CHANGE_PASSWORD_FALIURE, CHANGE_PASSWORD_REQUEST, CHANGE_PASSWORD_SUCCESS, CHANGE_PROFILE_IMAGE_FALIURE, CHANGE_PROFILE_IMAGE_REQUEST, CHANGE_PROFILE_IMAGE_SUCCESS, UPDATE_PROFILE_FALIURE, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from "./SettingsType"
 
 const initialState = {
     loading: false,
@@ -30,6 +30,30 @@ export const changepasswordReducer = (state = initialState, action) => {
         default: return state
     }
 }
+
+export const updateprofileReducer = (state = initialState, action) => {
+    switch(action.type){
+        case UPDATE_PROFILE_REQUEST:
+            return{
+                ...state,
+                loading: true
+            }
+        case UPDATE_PROFILE_SUCCESS:
+            return{
+                loading: false,
+                data: action.payload,
+                error:''
+            }
+        case UPDATE_PROFILE_FALIURE:
+            return{
+                loading: false,
+                data: [],
+                error:action.payload
+            }
+        default: return state
+    }
+}
+
 
 // FOR CHANGE PASSOWARD
 export const changeprofileimageReducer = (state = initialState, action) => {

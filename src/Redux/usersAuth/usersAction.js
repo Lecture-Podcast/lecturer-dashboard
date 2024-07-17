@@ -91,3 +91,26 @@ export function logIn(loginDetails, history) {
     }
   };
 }
+
+export const LogOutAuthAction = (history) => {
+  // logout();
+  // clearTimeout(autoLogoutTimer)
+  return async (dispatch) => {
+    try {
+      // const res = await axios.get("https://credio-api.herokuapp.com/api/v1/auth/login");
+      // const { data } = res;
+      dispatch({
+        type: "user/logout",
+        // payload: data.message,
+      });
+      history();
+    } catch (error) {
+      // if (error.response) {
+      //   dispatch({
+      //     type: AuthActionType.LOGOUT_FAIL,
+      //     // payload: error.response.data.message,
+      //   });
+      // }
+    }
+  };
+};

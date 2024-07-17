@@ -27,6 +27,7 @@ function usersSlice(state = usersAuth, action) {
       };
 
     case "user/logout":
+      localStorage.clear("auth");
       return {
         ...state,
         isloggedOut: true

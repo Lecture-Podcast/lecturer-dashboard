@@ -1,23 +1,27 @@
 .navbar{
-    width: 100%;
-    position: fixed;
+    width:calc(100% - 314px);
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: space-between;
-    gap: 177px;
     padding: 20px 37.5px 8px 37.5px;
     background-color: white;
     z-index: 4;
 }
-
+.navbar-left{
+    width: 40%;
+}
 .navbar-search{
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 1.2rem 1.10rem;
     border: 1px solid #FAE6C3;
     border-radius: 6px;
     gap: 15px;
+}
+.navbar-logo{
+    display: none;
 }
 .navbar-search svg{
     color: #667185;
@@ -32,9 +36,11 @@
     outline: none;
 }
 .navbar-profile{
-    width: 50%;
     display: flex;
     align-items: center;
+}
+.navbar-hambuger{
+    display: none;
 }
 .notification-bell{
     height: 48px;
@@ -79,22 +85,79 @@
     height: 48px;
     border-radius: 50%;
 }
+
 .profile-name h4{
     font-family: "Inter";
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     color: #01003A;
 }
 .profile-name p{
     font-family: "Inter";
-    font-size: 14px;
+    font-size: 0.875re;
     font-weight: 400;
     color: #7E7E9B;
 }
 .profile-more{
-    margin-left: 35px;
+    margin-left: 15px;
     cursor: pointer;
 }
 .profile-more svg{
     color: #FFA500;
+}
+@media (max-width: 1100px){
+    .navbar-search{
+        width: 30%;
+        padding: 0.9rem 1rem;
+    }
+    .notification-bell{
+        height: 38px;
+        width: 38px;
+    }
+    .dp img{
+        height: 38px;
+        width: 38px;
+    }
+    .navbar-profile h4{
+        font-size: 0.65rem;
+    }
+    .profile-name p{
+        font-size: 0.65rem;
+    }
+}
+@media (max-width: 1000px){
+    .navbar{
+        width:100%;
+        background-color: #01003A;
+    }
+    .navbar-search{
+        display: none;
+    }
+    .navbar-logo{
+        display: block;
+    }
+    .navbar-search{
+        width: 55%;
+    }
+    .notification-bell{
+        height: 50px;
+        width:50px;
+    }
+    .dp img{
+        height: 50px;
+        width: 50px;
+    }
+    .profile-name {
+        display: none;
+    }
+    .navbar-profile{
+        display: none;
+    }
+    .navbar-hambuger{
+        display: block;
+    }
+    .navbar-hambuger svg{
+        color: #FFA500;
+        font-size: 1.8rem;
+    }
 }

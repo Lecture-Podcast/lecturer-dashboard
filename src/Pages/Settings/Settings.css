@@ -93,6 +93,7 @@ form{
     width: 100%;
     display: flex;
     justify-content: right;
+    gap: 10px;
 }
 .submit-button button{
     background-color: transparent;

@@ -10,6 +10,7 @@ import ContentLibrary from "./Pages/content-library";
 import Login from "./Pages/Authentication/Login";
 import SignUp from "./Pages/Authentication/SignUp";
 import Verify from "./Pages/Authentication/Verify";
+import Playlist from "./Pages/Create-Playlist/Playlist";
 
 export default function Router() {
   const routes = useRoutes([
@@ -39,6 +40,7 @@ export default function Router() {
         { path: "create/upload", element: <Uplaod /> },
         { path: "create-content", element: <Content /> },
         { path: "create-library", element: <ContentLibrary /> },
+        { path: "create-playlist", element: <Playlist/> },
       ],
     },
   ]);

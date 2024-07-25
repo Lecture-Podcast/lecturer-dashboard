@@ -4,6 +4,7 @@ import { audioReducer, deletecontentReducer, editaudioReducer, editfileReducer, 
 import usersSlice from './usersAuth/usersSlice';
 import { changeprofileimageReducer } from './Settings/SettingReducer';
 import { verifyReducer } from './Verify/verifyReducer';
+import { playlistReducer } from './Playlist/PlaylistReducer';
 
 
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     auth: usersSlice,
     changeprofileimage: changeprofileimageReducer,
     verify:verifyReducer,
+    playlist: playlistReducer,
 })
 
 export default rootReducer;

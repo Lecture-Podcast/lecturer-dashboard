@@ -68,7 +68,7 @@ const Home = ({loading}) => {
                                 <p>12:00 pm - 1:30 pm</p>
                             </div>
                         </div> */}
-
+ 
                         <div className="comingsoon-animation">
                             <LottieAnimation data={coming}/>
                             <p className="coming-soon-text">Coming soon</p>

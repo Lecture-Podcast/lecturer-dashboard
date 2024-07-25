@@ -18,6 +18,17 @@
     font-weight: 400;
     font-family: "Inter";
 }
+.inputfield select{
+    margin-top: 8px;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #D0D5DD;
+    border-radius: 6px;
+    color: #667185;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter";
+}
 .inputfield input::placeholder{
     color: #667185;
     font-size: 14px;

@@ -2,6 +2,7 @@
     width: 100%;
     min-height: 100vh;
     background-color: #FBFBFB;
+    padding: 1.2rem;
 }
 .upload-box{
     margin-top: 16px;
@@ -14,6 +15,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.upload-box-3{
+    height: 250px;
 }
 .upload-box-2{
     margin-top: 16px;

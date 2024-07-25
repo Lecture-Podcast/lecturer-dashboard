@@ -24,6 +24,14 @@ const Create = () => {
                     <button>Upload Document</button>
                 </Link>
             </div>
+            <div className="create-types">
+                <img src={typeicon}></img>
+                <h4>Create Playlist</h4>
+                <p>Upload lecture materials as WORD,<br></br> PDF, Video or Audio format</p>
+                <Link to="/home/create-playlist">
+                    <button>Create Playist</button>
+                </Link>
+            </div>
             {modal && (<Comingmodal togglemodal={toggleModal}/>)}
         </div>
     );

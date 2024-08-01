@@ -104,6 +104,7 @@ export const createSection = (id, poststate, history, setErrorHandler) => {
 
 export const createContent = (id, sectionId, poststate, history, setErrorHandler) => {
     return async (dispatch) => {
+        console.log("this is action", id, sectionId)
         dispatch(createContentRequest())
         try{
             let datas = JSON.parse(localStorage.getItem("auth"));

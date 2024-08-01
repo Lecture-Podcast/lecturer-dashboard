@@ -18,81 +18,63 @@ export const playlistReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: true,
-                sectionloading:false,
-                contentloading: false,
             }
         case CREATE_PLAYLIST_SUCCESS:
             return{
                 loading: false,
-                sectionloading:false,
-                contentloading: false,
-                sectionData:[],
-                contentData:[],
                 playlistData: action.payload,
                 error:''
             }
         case CREATE_PLAYLIST_FALIURE:
             return{
                 loading: false,
-                sectionloading:false,
-                contentloading: false,
                 playlistData: [],
-                sectionData:[],
-                contentData:[],
                 error:action.payload
             }
+        default: return state
+    }
+}
+
+export const sectionReducer = (state = initialState, action) => {
+    switch(action.type){
         case CREATE_SECTION_REQUEST:
             return{
                 ...state,
                 sectionloading: true,
-                loading:false,
-                contentloading: false,
             }
         case CREATE_SECTION_SUCCESS:
             return{
                 sectionloading: false,
-                loading:false,
-                contentloading: false,
                 sectionData: action.payload,
-                playlistData:[],
-                contentData:[],
                 error:''
             }
         case CREATE_SECTION_FALIURE:
             return{
                 sectionloading: false,
-                loading:false,
-                contentloading: false,
                 sectionData: [],
-                playlistData:[],
-                contentData:[],
                 error:action.payload
             }
+        default: return state
+    }
+}
+
+export const lectureReducer = (state = initialState, action) => {
+    switch(action.type){
         case CREATE_CONTENT_REQUEST:
             return{
                 ...state,
-                sectionloading: false,
-                loading:false,
                 contentloading: true,
             }
         case CREATE_CONTENT_SUCCESS:
             return{
-                sectionloading: false,
-                loading:false,
                 contentloading: false,
                 contentData: action.payload,
-                sectionData:[],
-                playlistData:[],
                 error:''
             }
         case CREATE_CONTENT_FALIURE:
             return{
-                sectionloading: false,
-                loading:false,
-                loading: false,
+                contentloading: false,
                 contentData: [],
-                sectionData:[],
-                playlistData:[],
                 error:action.payload
             }
         default: return state

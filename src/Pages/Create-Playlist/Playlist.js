@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import"./Playlist.css"
-import { FaUpload } from "react-icons/fa";
+import { FaPlus, FaUpload } from "react-icons/fa";
 import { createContent, createPlayist, createSection } from "../../Redux/Playlist/PlaylistAction";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
@@ -118,16 +118,30 @@ const Playlist = ({
 
         }
     }
+    console.log(playlistData)
+    console.log(sectiondata)
+    console.log(playlistData?._id, sectiondata?._id)
     const handleContentSubmit = async (e)=>{
         e.preventDefault()
         console.log("i am stuck")
+        const formData = new FormData();
+        for (const lecture of lectures) {
+            for (const file of lecture.files) {
+              formData.append('documents', file);
+              formData.append('content_types', ContentType);
+              formData.append('descriptions', ContentDescription);
+              formData.append('titles', duration);
+              formData.append('durations', "N/A");
+            } 
+        }
         try{
-            await createSection(sectiondata._id, sectionState, ()=>{
-                swal("Section created Successfully");
-                setsectionSuccess(true)
-            },()=>{
-                swal(error)
-            })
+            await createContent(
+                playlistData._id,
+                sectiondata[0]._id,
+                formData,
+                () => {swal("Content created successfully")},
+                () => {swal(error)}
+            );
         }catch(error){
 
         }
@@ -157,7 +171,8 @@ const Playlist = ({
 
     //     }
     // }
-    const handleAddLecture = () => {
+    const handleAddLecture = (e) => {
+        e.preventDefault()
         setLectures([...lectures, { files: [] }]);
     };
     return ( 
@@ -237,7 +252,7 @@ const Playlist = ({
                                 {lectures.map((lecture, index) => (
                                     <div className="lecture-contents">
                                         <p className="playlist-head">Lecture {index + 1}</p>
-                                        <form onSubmit={handleContentSubmit}>
+                                        <form>
                                             <div className="course-form">
                                                 <div className="inputfield">
                                                     <label>Lecture Content</label>
@@ -311,24 +326,34 @@ const Playlist = ({
                                                         <span>+ Add Lecture</span>
                                                     )}
                                                 </button>
-                                                {/* <button
-                                                    type="submit"
-                                                    className="login-btn"
-                                                >
-                                                    {loading ? (  
-                                                    <div className="spinner-btn">
-                                                        <LottieAnimation data={loader}/>
-                                                    </div>
-                                                    ): (
-                                                    <span>Submit</span>
-                                                    )}
-                                                </button> */}
+                                                
                                         </form>
                                     </div>
                                 ))}
+                                <button
+                                    type="submit"
+                                    className="login-btn"
+                                    onClick={handleContentSubmit}
+                                >
+                                    {loading ? (  
+                                    <div className="spinner-btn">
+                                        <LottieAnimation data={loader}/>
+                                    </div>
+                                    ): (
+                                    <span>Submit</span>
+                                    )}
+                                </button>
                             </div>
                         )}
                     </div>
+                    {playlistSuccess && ( <div className="add-section">
+                        <div className="add-section-inner">
+                            <div className="add-button">
+                                <FaPlus/>
+                            </div>
+                            <p>Add Section</p>
+                        </div>
+                    </div> )}
                 </div>
             </div>
         </>
@@ -344,7 +369,7 @@ const mapStoreToProps = (state) => {
         data: state.playlist.playlistData,
         sectionerror: state.playlist.error,
         playlistData: state.playlist.playlistData?.data?.data,
-        sectiondata: state.playlist.sectionData?.data?.data?.sections,
+        sectiondata: state.section.sectionData?.data?.data?.sections,
         contentdata: state.playlist.contentData
     };
 };
